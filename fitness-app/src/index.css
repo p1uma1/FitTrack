@@ -1,0 +1,28 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --coll: #e3b735;
+}
+
+body{
+  background-color: rgb(51, 51, 51);
+  color: white;
+}
+.head1{
+  -webkit-text-stroke: 1px var(--coll);
+  color: transparent;
+  font-size: 10rem;
+  font-weight: 900;
+  text-align: center;
+}
+::-webkit-scrollbar{
+  width:4px;
+}
+::-webkit-scrollbar-thumb{
+  border-radius: 10px;
+  background-color: black;
+  box-shadow: yellow;
+}
