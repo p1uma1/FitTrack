@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { getReports, createReport } = require('../controllers/reportController'); 
+const { getReports, createReport, updateReport } = require('../controllers/reportController'); 
 const requireAuth = require('../Middleware/auth');
 
-router.get('/myreports',requireAuth, getReports); // Use getReports as middleware
-router.post('/', requireAuth, createReport);    // Use createReport as middleware
+router.get('/myreports', requireAuth, getReports); // Get all reports for the authenticated user
+router.post('/', requireAuth, createReport); // Create a new report
+router.put('/myreports', requireAuth, updateReport); // Update an existing report
 
 module.exports = router;

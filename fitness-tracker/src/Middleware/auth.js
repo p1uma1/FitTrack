@@ -10,7 +10,7 @@ const requireAuth = (req, res, next) => {
     jwt.verify(token, 'mysecretkey', async (err, decodedToken) => {
       if (err) {
         console.error('Token verification error:', err);
-        res.status(401).json({ message: 'Unauthorized' });
+        res.redirect('/overview');
       } else {
         const user = await User.findById(decodedToken.id);
         if (!user) {
@@ -21,8 +21,7 @@ const requireAuth = (req, res, next) => {
       }
     });
   } else {
-    res.redirect('/preview');
-    
+    res.redirect('/overview');
   }
 };
 

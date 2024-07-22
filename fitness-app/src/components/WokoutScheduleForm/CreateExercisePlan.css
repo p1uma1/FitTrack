@@ -1,0 +1,108 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Container styles */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styles */
+  h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  /* Form styles */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  form div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+    
+  /* Workouts list styles */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  li img {
+    border-radius: 4px;
+  }
+  
+  li span {
+    flex-grow: 1;
+    color: #333;
+  }
+  
+  /* Selected workouts styles */
+  .selected-workouts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .selected-workouts div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #e9ecef;
+  }
+  
+  .selected-workouts label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .selected-workouts input {
+    width: 60px;
+  }
+  
+  /* Headings */
+  h3 {
+    color: #333;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 5px;
+  }
+  
+  

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Navbar from "./components/Navbar/Navbar";
 import Preview from "./pages/Preview";
+import CreateExercisePlan from "./components/WokoutScheduleForm/CreateExercisePlan";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -15,10 +16,10 @@ function App() {
         <Routes>
         {/* Default path when user isn't logged in*/ }
         {!isLoggedIn && <Route path="/" element={<Navigate to="/preview" />} />}
-
+        {isLoggedIn && <Route path="/preview" element={<Navigate to="/" />} />}
         {isLoggedIn && <Route path="/" element={<Home />} />}
         <Route path="/preview" element={<Preview/>} />
-          <Route path="/about" element={<About />} />
+        <Route path="/workouts/customWorkout" element={<CreateExercisePlan />} />
         </Routes>
       </Router>
     </>

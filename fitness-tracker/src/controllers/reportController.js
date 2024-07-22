@@ -1,34 +1,22 @@
+const mongoose = require('mongoose');
 const Report = require('../models/Report');
 
-
-const getReports = async (req, res) => {
-  console.log('getreports function called');
-  try {
-    const userId = req.user._id;
-    const reports = await Report.find({ userId });
-    res.status(200).json(reports);
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong', error });
-  }
-};
-
-
+// Create Report Function
 const createReport = async (req, res) => {
-  // Extract userId from the authenticated user (assuming it's stored in req.user from the middleware)
-  const userId = req.user.id;
-  const { date, value, unit } = req.body; // Assuming these are provided in the request body
+  const userId = req.user._id;
+  const { type, unit, date, value } = req.body;
 
   try {
-    // Find the report by the user ID
-    let report = await Report.findOne({ userId });
-    
+    // Find the report by the user ID and type
+    let report = await Report.findOne({ userId, type });
+
     // If report doesn't exist, create a new one
     if (!report) {
-      report = new Report({ userId, data: [] });
+      report = new Report({ userId, type, unit, data: [] });
     }
 
     // Push new data entry into the data array
-    report.data.push({ date, value, unit });
+    report.data.push({ date, value });
 
     // Save the updated report document
     await report.save();
@@ -40,5 +28,42 @@ const createReport = async (req, res) => {
   }
 };
 
+// Get Reports Function
+const getReports = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const reports = await Report.find({ userId });
+    res.status(200).json(reports);
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong', error });
+  }
+};
 
-module.exports = { getReports, createReport };
+// Update Report Function
+const updateReport = async (req, res) => {
+  const userId = req.user._id;
+  const { type, date, value } = req.body;
+
+  try {
+    // Find the report by the user ID and type
+    let report = await Report.findOne({ userId, type });
+
+    // If report doesn't exist, return an error
+    if (!report) {
+      return res.status(404).json({ message: 'Report not found' });
+    }
+
+    // Push new data entry into the data array
+    report.data.push({ date, value });
+
+    // Save the updated report document
+    await report.save();
+
+    res.status(200).json(report);
+  } catch (err) {
+    console.error('Error updating report:', err);
+    res.status(500).json({ message: 'Failed to update report', error: err });
+  }
+};
+
+module.exports = { getReports, createReport, updateReport };

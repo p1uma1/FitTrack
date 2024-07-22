@@ -6,25 +6,30 @@ const jwt = require('jsonwebtoken');
 const maxAge = 3 * 24 * 60 * 60; // 3 days in seconds
 
 const createInitialReports = async (userId) => {
-  const reportTypes = ['kcal', 'hrs', '', '%', 'kg'];
+  const reportTypes = [
+    { type: 'calories burned', unit: 'kcal' },
+    { type: 'sleep', unit: 'hours' },
+    { type: 'BMI', unit: '' },
+    { type: 'body fat rate', unit: '%' },
+    { type: 'weight', unit: 'kg' }
+  ];
 
   try {
-    const promises = reportTypes
-      .filter(type => type) // Filter out the empty string
-      .map(async (type) => {
-        try {
-          const newReport = new Report({
-            userId,
-            type,
-            data: []
-          });
-          await newReport.save();
-          console.log(`Created initial report for type '${type}'`);
-        } catch (error) {
-          console.error(`Error creating report for type '${type}':`, error);
-          throw error;  // Propagate the error to the main try-catch block
-        }
-      });
+    const promises = reportTypes.map(async ({ type, unit }) => {
+      try {
+        const newReport = new Report({
+          userId,
+          type,
+          unit,
+          data: []
+        });
+        await newReport.save();
+        console.log(`Created initial report for type '${type}' ${unit}`);
+      } catch (error) {
+        console.error(`Error creating report for type '${type}':`, error);
+        throw error;  // Propagate the error to the main try-catch block
+      }
+    });
 
     await Promise.all(promises);
     console.log('All initial reports created successfully');
@@ -94,7 +99,12 @@ const registerUser = async (req, res) => {
     console.log('User registered successfully:', savedUser);
 
     // Create initial reports for the new user
-    await createInitialReports(savedUser._id);
+    try{
+      await createInitialReports(savedUser._id);
+    } catch(err){
+      console.log('initializing reports failed');
+    }
+    
     console.log('user saved');
 
     // Generate JWT

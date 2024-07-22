@@ -1,18 +1,16 @@
-'use client';
-import React, {  useState,useEffect } from 'react';
-// Import Swiper React components
+import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './HomeBanner2.css'
+import './HomeBanner2.css';
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-// import required modules
+// Import required modules
 import { Pagination } from 'swiper/modules';
 
 const HomeBanner2 = () => {
-  const [Workouts, setWorkouts] = React.useState<any[] | null>(null);
+  const [workouts, setWorkouts] = useState<any[]>([]);
   const [customPlans, setCustomPlans] = useState<any[]>([]);
   const [form, setForm] = useState({ type: '', imageUrl: '', days: '' });
 
@@ -49,46 +47,14 @@ const HomeBanner2 = () => {
   useEffect(() => {
     getWorkouts();
   }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const addCustomPlan = () => {
-    const { type, imageUrl, days } = form;
-    if (type && imageUrl && days) {
-      const newPlan = { type, imageUrl, days: parseInt(days) };
-      setCustomPlans([...customPlans, newPlan]);
-      setForm({ type: '', imageUrl: '', days: '' });
-    }
   };
 
   return (
     <div>
       <h1 className='head1'>Workouts</h1>
-      <div className="form-container">
-        <input
-          type="text"
-          name="type"
-          placeholder="Workout Type"
-          value={form.type}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="imageUrl"
-          placeholder="Image URL"
-          value={form.imageUrl}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="days"
-          placeholder="Rest Days"
-          value={form.days}
-          onChange={handleChange}
-        />
-        <button onClick={addCustomPlan}>Add Custom Plan</button>
-      </div>
 
       <Swiper
         slidesPerView={1}
@@ -117,33 +83,53 @@ const HomeBanner2 = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {Workouts && Workouts.map((item: any, index: number) => {
-          return (
-            <SwiperSlide key={index}>
-              <div
-                className='swiper-slide'
-                style={{
-                  backgroundImage: `url(${item.imageUrl})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  height: '300px', // Set a height for the slide
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                onClick={()=>{
-                  window.location.href = `/workouts/(${item.type})`;
-                }}
-              >
-                <div className='swiper-slide-content'>
-                  <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
-                    {item.type}
-                  </h2>
-                </div>
+        {workouts.map((item: any, index: number) => (
+          <SwiperSlide key={index}>
+            <div
+              className='swiper-slide'
+              style={{
+                backgroundImage: `url(${item.imageUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                height: '300px', // Set a height for the slide
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onClick={() => {
+                window.location.href = `/workouts/${item.type}`;
+              }}
+            >
+              <div className='swiper-slide-content'>
+                <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
+                  {item.type}
+                </h2>
               </div>
-            </SwiperSlide>
-          );
-        })}
+            </div>
+          </SwiperSlide>
+        ))}
+        <SwiperSlide>
+          <div
+            className='swiper-slide'
+            style={{
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              height: '300px', // Set a height for the slide
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onClick={() => {
+              window.location.href = `/workouts/customWorkout`;
+            }}
+          >
+            <div className='swiper-slide-content'>
+              <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
+                Custom WorkoutPlan
+              </h2>
+            </div>
+          </div>
+        </SwiperSlide>
       </Swiper>
     </div>
   );
