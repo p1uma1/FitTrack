@@ -1,4 +1,4 @@
-const express = require('express');
+
 const dotenv = require('dotenv');
 const connectDB = require('./config/db'); // Adjust path as necessary
 

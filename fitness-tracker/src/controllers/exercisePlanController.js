@@ -3,7 +3,8 @@ const Workout = require('../models/Workout');
 
 const getExercisePlans = async (req, res) => {
   try {
-    const { userId } = req.params;
+    const { userId } = req.user._id;
+    console.log(userId);
     const plans = await ExercisePlan.find({ userId }).populate('workouts');
     res.status(200).json(plans);
   } catch (error) {

@@ -15,6 +15,7 @@ const CreateExercisePlan: React.FC = () => {
   const [exercisePlanName, setExercisePlanName] = useState<string>('');
   const [filter, setFilter] = useState<string>('');
 
+
   useEffect(() => {
     // Fetch workouts from the server
     const fetchWorkouts = async () => {
@@ -48,17 +49,20 @@ const CreateExercisePlan: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    const userId = localStorage.getItem('userId');
     const exercisePlan = {
-      name: exercisePlanName,
-      workouts: selectedWorkouts.map(workout => ({
-        workout: workout._id,
-        sets: workout.sets,
-        reps: workout.reps
-      }))
-    };
+        userId, // Include the userId in the exercise plan
+        name: exercisePlanName,
+        workouts: selectedWorkouts.map(workout => ({
+          workout: workout._id,
+          sets: workout.sets,
+          reps: workout.reps
+        }))
+      };
 
     try {
-      const response = await fetch('http://localhost:3000/api/exercisePlans', {
+        
+        const response = await fetch(`http://localhost:3000/api/exercise-plans`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

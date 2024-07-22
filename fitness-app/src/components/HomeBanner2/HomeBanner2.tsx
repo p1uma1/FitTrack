@@ -10,9 +10,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
 const HomeBanner2 = () => {
-  const [workouts, setWorkouts] = useState<any[]>([]);
-  const [customPlans, setCustomPlans] = useState<any[]>([]);
-  const [form, setForm] = useState({ type: '', imageUrl: '', days: '' });
+  const [workouts, setWorkouts] = useState<any[]>([])
 
   const getWorkouts = async () => {
     let data: any[] = [
@@ -48,9 +46,7 @@ const HomeBanner2 = () => {
     getWorkouts();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  
 
   return (
     <div>
@@ -108,28 +104,7 @@ const HomeBanner2 = () => {
             </div>
           </SwiperSlide>
         ))}
-        <SwiperSlide>
-          <div
-            className='swiper-slide'
-            style={{
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              height: '300px', // Set a height for the slide
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onClick={() => {
-              window.location.href = `/workouts/customWorkout`;
-            }}
-          >
-            <div className='swiper-slide-content'>
-              <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
-                Custom WorkoutPlan
-              </h2>
-            </div>
-          </div>
-        </SwiperSlide>
+        
       </Swiper>
     </div>
   );

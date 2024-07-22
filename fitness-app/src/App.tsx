@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar/Navbar";
 import Preview from "./pages/Preview";
 import CreateExercisePlan from "./components/WokoutScheduleForm/CreateExercisePlan";
+import Page from "./pages/WorkoutPage/page";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -20,6 +21,7 @@ function App() {
         {isLoggedIn && <Route path="/" element={<Home />} />}
         <Route path="/preview" element={<Preview/>} />
         <Route path="/workouts/customWorkout" element={<CreateExercisePlan />} />
+        <Route path="/workouts/:type" element={<Page />} />
         </Routes>
       </Router>
     </>

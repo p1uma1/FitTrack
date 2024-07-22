@@ -1,4 +1,3 @@
-"use client";
 import React, { useState } from 'react';
 import './AuthPopup.css';
 import Logo from '../../assets/logo.png';
@@ -53,6 +52,9 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
         setEmailError(data.errors.email);
         setPasswordError(data.errors.password);
       } else {
+        const userId = data.user;
+        localStorage.setItem('userId', userId);
+        console.log(userId,' was the userId');
         setShowpopup(false);
         setIsLoggedIn(true);
         navigate('/');
