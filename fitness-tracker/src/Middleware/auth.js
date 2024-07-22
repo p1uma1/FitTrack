@@ -21,7 +21,7 @@ const requireAuth = (req, res, next) => {
       }
     });
   } else {
-    res.redirect('/overview');
+    return res.status(401).json({ message: 'Unauthorized: No token provided' });
   }
 };
 

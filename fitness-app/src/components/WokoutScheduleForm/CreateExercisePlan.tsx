@@ -64,14 +64,20 @@ const CreateExercisePlan: React.FC = () => {
         
         const response = await fetch(`http://localhost:3000/api/exercise-plans`, {
         method: 'POST',
+        credentials: "include",
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+       
+          
         },
         body: JSON.stringify(exercisePlan)
       });
 
       if (!response.ok) {
         throw new Error('Failed to create exercise plan');
+      }
+      else{
+        console.log('succesfully added');
       }
 
       // Handle success (e.g., redirect or display success message)

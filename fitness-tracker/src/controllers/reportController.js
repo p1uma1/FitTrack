@@ -42,6 +42,7 @@ const getReports = async (req, res) => {
 // Update Report Function
 const updateReport = async (req, res) => {
   const userId = req.user._id;
+  console.log(userId);
   const { type, date, value } = req.body;
 
   try {

@@ -4,6 +4,6 @@ const requireAuth = require('../Middleware/auth');
 const router = express.Router();
 
 router.get('/:userId',requireAuth, getExercisePlans);
-router.post('/', createExercisePlan);
+router.post('/',requireAuth, createExercisePlan);
 
 module.exports = router;
