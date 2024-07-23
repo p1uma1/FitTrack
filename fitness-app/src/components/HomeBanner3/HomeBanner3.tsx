@@ -87,7 +87,7 @@ const HomeBanner3 = () => {
                 justifyContent: 'center',
               }}
               onClick={() => {
-                window.location.href = `/workouts/${plan._id}`;
+                window.location.href = `/exercise-plans/${plan._id}`;
               }}
             >
               <div className='swiper-slide-content'>
