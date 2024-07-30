@@ -3,21 +3,18 @@ import logo from "../../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import AuthPopup from "../AuthPopup/AuthPopup";
-// Adjust the path as necessary
 
 interface NavbarProps {
   isLoggedIn: boolean;
   setIsLoggedIn: (isLoggedIn: boolean) => void;
+  onAboutClick: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
+const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick }) => {
   const navigate = useNavigate();
-
   const [showpopup, setShowpopup] = React.useState<boolean>(false);
 
-  const handleProfileClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-  ) => {
+  const handleProfileClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (!isLoggedIn) {
       e.preventDefault();
       setShowpopup(true);
@@ -30,8 +27,8 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
     <nav>
       <img src={logo} alt="logo" />
 
-      <Link to="./">Home</Link>
-      <Link to="./about">About</Link>
+      <Link to="/">Home</Link>
+      <a href="#" onClick={onAboutClick} style={{ color: '#fff', marginRight: '1em' }}>About</a>
       <Link to="/profile" onClick={handleProfileClick}>
         Profile
       </Link>

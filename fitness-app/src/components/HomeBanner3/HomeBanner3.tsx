@@ -50,14 +50,42 @@ const HomeBanner3 = () => {
   return (
     <div>
       <h1 className='head1'>Workout Plans</h1>
-      <Swiper modules={[Pagination]} pagination={{ clickable: true }}>
+
+      <Swiper
+        slidesPerView={1}
+        spaceBetween={10}
+        pagination={{
+          clickable: true,
+        }}
+        breakpoints={{
+          '@0.00': {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          '@0.75': {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          '@1.00': {
+            slidesPerView: 3,
+            spaceBetween: 40,
+          },
+          '@1.50': {
+            slidesPerView: 4,
+            spaceBetween: 50,
+          },
+        }}
+        modules={[Pagination]}
+        className="mySwiper"
+      >
         <SwiperSlide>
           <div
             className='swiper-slide'
             style={{
+              backgroundImage: `url(https://www.elitelifestylecoach.com/cdn/shop/products/4_514c157d-a575-4020-9677-ededaba31911.png?v=1645132427)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              height: '300px',
+              height: '300px', // Set a height for the slide
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -78,10 +106,10 @@ const HomeBanner3 = () => {
             <div
               className='swiper-slide'
               style={{
-                backgroundImage: `url(${plan.imageUrl})`,
+                backgroundImage: `url(https://www.elitelifestylecoach.com/cdn/shop/products/4_514c157d-a575-4020-9677-ededaba31911.png?v=1645132427)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                height: '300px',
+                height: '300px', // Set a height for the slide
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
