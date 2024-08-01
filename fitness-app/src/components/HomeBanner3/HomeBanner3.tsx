@@ -40,6 +40,34 @@ const HomeBanner3 = () => {
     }
   };
 
+  const handleEdit = async(planId: string) => {
+    console.log(`Editing plan ${planId}`);
+    // Add your edit logic here
+  };
+
+  const handleDelete = async(planId: string) => {
+    console.log(`Deleting plan ${planId}`);
+    try {
+   
+
+      const response = await fetch(`http://localhost:3000/api/exercise-plans/${planId}`, { 
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete exercise plan');
+      }
+
+      setExercisePlans((prevPlans) => prevPlans.filter(plan => plan._id !== planId));
+  }catch (error) {
+    console.error('Error deleting exercise plans:', error);
+    setError('Failed to delete exercise plan');
+  }};
+
   useEffect(() => {
     getExercisePlans();
   }, []);
@@ -89,6 +117,7 @@ const HomeBanner3 = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              position: 'relative', // Added to position buttons
             }}
             onClick={() => {
               window.location.href = `/workouts/customWorkout`;
@@ -98,6 +127,26 @@ const HomeBanner3 = () => {
               <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
                 Custom Workout Plan
               </h2>
+              <button 
+                className='edit-btn' 
+                onClick={(e) => { 
+                  e.stopPropagation(); 
+                  handleEdit('customWorkout'); 
+                }}
+                style={{ position: 'absolute', top: '10px', right: '60px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
+              >
+                Edit
+              </button>
+              <button 
+                className='delete-btn' 
+                onClick={(e) => { 
+                  e.stopPropagation(); 
+                  handleDelete('customWorkout'); 
+                }}
+                style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
+              >
+                Delete
+              </button>
             </div>
           </div>
         </SwiperSlide>
@@ -113,6 +162,7 @@ const HomeBanner3 = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                position: 'relative', // Added to position buttons
               }}
               onClick={() => {
                 window.location.href = `/exercise-plans/${plan._id}`;
@@ -122,6 +172,26 @@ const HomeBanner3 = () => {
                 <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
                   {plan.name}
                 </h2>
+                <button 
+                  className='edit-btn' 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    window.location.href = `/workouts/customWorkout/${plan._id}`;
+                  }}
+                  style={{ position: 'absolute', top: '10px', right: '60px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
+                >
+                  Edit
+                </button>
+                <button 
+                  className='delete-btn' 
+                  onClick={(e) => { 
+                    e.stopPropagation(); 
+                    handleDelete(plan._id); 
+                  }}
+                  style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
+                >
+                  Delete
+                </button>
               </div>
             </div>
           </SwiperSlide>
@@ -132,3 +202,4 @@ const HomeBanner3 = () => {
 };
 
 export default HomeBanner3;
+ 

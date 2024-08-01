@@ -7,6 +7,7 @@ import Preview from "./pages/Preview";
 import CreateExercisePlan from "./components/WokoutScheduleForm/CreateExercisePlan";
 import Page from "./pages/WorkoutPage/page";
 import ExercisePlanPage from "./pages/ExercisePlanPage/ExercisePlanPage";
+import UpdateExercisePlan from "./components/WokoutScheduleForm/UpdateExrcisePlan";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -32,6 +33,7 @@ function App() {
         <Route path="/workouts/customWorkout" element={<CreateExercisePlan />} />
         <Route path="/workouts/:type" element={<Page />} />
         <Route path="/exercise-plans/:planId" element={<ExercisePlanPage/>} />
+        <Route path="/workouts/customWorkout/:planId" element={<UpdateExercisePlan  />} />
         </Routes>
         <About ref={footerRef}/>
         
