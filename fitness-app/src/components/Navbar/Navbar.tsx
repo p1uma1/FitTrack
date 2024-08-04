@@ -12,12 +12,34 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick }) => {
   const navigate = useNavigate();
-  const [showpopup, setShowpopup] = React.useState<boolean>(false);
+  const [showPopup, setShowPopup] = React.useState<boolean>(false);
+
+  const handleLogoutClick = async () => {
+    console.log('handle logout');
+    try {
+      const response = await fetch('http://localhost:3000/api/users/logout', { // Ensure this URL is correct
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log('logging out', response);
+
+      setIsLoggedIn(false);
+      localStorage.setItem('isLoggedIn', 'false');
+      navigate('/preview'); 
+
+    } catch (error) {
+      console.log('Error status:', error);
+    }
+  };
 
   const handleProfileClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (!isLoggedIn) {
       e.preventDefault();
-      setShowpopup(true);
+      setShowPopup(true);
     } else {
       navigate("/profile");
     }
@@ -33,19 +55,14 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
         Profile
       </Link>
       {isLoggedIn ? (
-        <button
-          onClick={() => {
-            setIsLoggedIn(false);
-            navigate("/preview");
-          }}
-        >
+        <button onClick={handleLogoutClick}>
           LogOut
         </button>
       ) : (
-        <button onClick={() => setShowpopup(true)}>LogIn</button>
+        <button onClick={() => setShowPopup(true)}>LogIn</button>
       )}
-      {showpopup && (
-        <AuthPopup setShowpopup={setShowpopup} setIsLoggedIn={setIsLoggedIn} />
+      {showPopup && (
+        <AuthPopup setShowpopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} />
       )}
     </nav>
   );

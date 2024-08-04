@@ -1,83 +1,131 @@
 import React from 'react';
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaLinkedin, FaGithub, FaGem, FaHome, FaEnvelope, FaPhone, FaPrint } from 'react-icons/fa';
 import './About.css';
 
 const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <MDBFooter ref={ref} bgColor='dark' className='text-center text-white text-lg-left'>
-      <MDBContainer className='p-4 pb-0'>
-        <section className='social-media'>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='facebook-f' />
-          </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='twitter' />
-          </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='google' />
-          </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='instagram' />
-          </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='linkedin-in' />
-          </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
-            <MDBIcon fab icon='github' />
-          </MDBBtn>
-        </section>
-      </MDBContainer>
+    
+    <footer ref={ref} className="text-center text-lg-start text-muted bg-dark text-white" style={{ backgroundColor: '#343a40' }}>
+      {/* Section: Social media */}
+      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" style={{ backgroundColor: '#343a40' }}>
+        {/* Left */}
+        <div className="me-5 d-none d-lg-block">
+          <span>Get connected with us on social networks:</span>
+        </div>
+        {/* Left */}
 
-      <MDBContainer className='text-left p-4'>
-        <section className='mb-4'>
-          <MDBRow>
-            <MDBCol lg='4' md='6' className='mb-4'>
-              <h5 className='text-uppercase'>Company</h5>
-              <ul className='list-unstyled mb-0'>
-                <li><a href='#!' className='text-white'>About Us</a></li>
-                <li><a href='#!' className='text-white'>Careers</a></li>
-                <li><a href='#!' className='text-white'>Press</a></li>
-                <li><a href='#!' className='text-white'>Blog</a></li>
-              </ul>
-            </MDBCol>
+        {/* Right */}
+        <div>
+          <a href="https://www.facebook.com/nimsara.piumal/" className="me-4 text-white">
+            <FaFacebookF />
+          </a>
+          <a href="#" className="me-4 text-white">
+            <FaTwitter />
+          </a>
+          <a href="#" className="me-4 text-white">
+            <FaGoogle />
+          </a>
+          <a href="#" className="me-4 text-white">
+            <FaInstagram />
+          </a>
+          <a href="#" className="me-4 text-white">
+            <FaLinkedin />
+          </a>
+          <a href="#" className="me-4 text-white">
+            <FaGithub />
+          </a>
+        </div>
+        {/* Right */}
+      </section>
+      {/* Section: Social media */}
 
-            <MDBCol lg='4' md='6' className='mb-4'>
-              <h5 className='text-uppercase'>Resources</h5>
-              <ul className='list-unstyled mb-0'>
-                <li><a href='#!' className='text-white'>Help Center</a></li>
-                <li><a href='#!' className='text-white'>Contact Us</a></li>
-                <li><a href='#!' className='text-white'>Privacy Policy</a></li>
-                <li><a href='#!' className='text-white'>Terms of Service</a></li>
-              </ul>
-            </MDBCol>
+      {/* Section: Links  */}
+      <section >
+        <div className="container text-center text-md-start mt-5 text-white" style={{ backgroundColor: '#343a40' }}>
+          {/* Grid row */}
+          <div className="row mt-3">
+            {/* Grid column */}
+            <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              {/* Content */}
+              <h6 className="text-uppercase fw-bold mb-4">
+                <FaGem className="me-3" />
+                Company name
+              </h6>
+              <p>
+                Here you can use rows and columns to organize your footer content. Lorem ipsum
+                dolor sit amet, consectetur adipisicing elit.
+              </p>
+            </div>
+            {/* Grid column */}
 
-            <MDBCol lg='4' md='6' className='mb-4'>
-              <h5 className='text-uppercase'>Follow Us</h5>
-              <ul className='list-unstyled mb-0'>
-                <li><a href='#!' className='text-white'>LinkedIn</a></li>
-                <li><a href='#!' className='text-white'>Twitter</a></li>
-                <li><a href='#!' className='text-white'>Facebook</a></li>
-                <li><a href='#!' className='text-white'>Instagram</a></li>
-              </ul>
-            </MDBCol>
-          </MDBRow>
-        </section>
-      </MDBContainer>
+            {/* Grid column */}
+            <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              {/* Links */}
+              <h6 className="text-uppercase fw-bold mb-4">
+                Products
+              </h6>
+              <p>
+                <a href="#!" className="text-reset">Angular</a>
+              </p>
+              <p>
+                <a href="#!" className="text-reset">React</a>
+              </p>
+              <p>
+                <a href="#!" className="text-reset">Vue</a>
+              </p>
+              <p>
+                <a href="#!" className="text-reset">Laravel</a>
+              </p>
+            </div>
+            {/* Grid column */}
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        &copy; {new Date().getFullYear()} Copyright:{' '}
-        <a className='text-white' href='https://mdbootstrap.com/'>
-          MDBootstrap.com
-        </a>
+            {/* Grid column */}
+            <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              {/* Links */}
+              <h6 className="text-uppercase fw-bold mb-4">
+                Useful links
+              </h6>
+              <p>
+                <a href="#!" className="text-reset">Pricing</a>
+              </p>
+              <p>
+                <a href="#!" className="text-reset">Settings</a>
+              </p>
+              <p>
+                <a href="#!" className="text-reset">Orders</a>
+              </p>
+              <p>
+                <a href="#!" className="text-reset">Help</a>
+              </p>
+            </div>
+            {/* Grid column */}
+
+            {/* Grid column */}
+            <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              {/* Links */}
+              <h6 className="text-uppercase fw-bold mb-4">Contact</h6>
+              <p><FaHome className="me-3" /> New York, NY 10012, US</p>
+              <p>
+                <FaEnvelope className="me-3" />
+                info@example.com
+              </p>
+              <p><FaPhone className="me-3" /> + 01 234 567 88</p>
+              <p><FaPrint className="me-3" /> + 01 234 567 89</p>
+            </div>
+            {/* Grid column */}
+          </div>
+          {/* Grid row */}
+        </div>
+      </section>
+      {/* Section: Links  */}
+
+      {/* Copyright */}
+      <div className="text-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+        © 2021 Copyright:
+        <a className="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
       </div>
-    </MDBFooter>
+      {/* Copyright */}
+    </footer>
   );
 });
 

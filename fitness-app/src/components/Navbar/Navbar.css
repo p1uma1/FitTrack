@@ -15,6 +15,12 @@ nav {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     gap: 30px;
   }
+  :root {
+    --primary-color: #ff5733;
+    --background-color: #333333;
+    --text-color: #ffffff;
+    --border-color: #444444;
+  }
   
   nav img {
     height: 60px;
@@ -28,7 +34,7 @@ nav {
   }
   
   nav a:hover {
-    color: rgb(204, 198, 38);
+    color: #ff5733;;
   }
   
   nav button {
@@ -45,6 +51,6 @@ nav {
   }
   
   nav button:hover {
-    color: rgb(204, 198, 38);
+    color: #ff5733;;
   }
   

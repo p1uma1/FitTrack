@@ -40,14 +40,12 @@ const createInitialReports = async (userId) => {
 };
 
 const createToken = (id) => {
-  console.log('creating jwt');
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: maxAge,
   });
 };
 
 const handleErrors = (err) => {
-  console.log(err.message, err.code);
   let errors = { email: '', password: '' };
 
   // Incorrect email
@@ -84,7 +82,6 @@ const registerUser = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
-    console.log('user created');
 
     const newUser = new User({
       email,
@@ -153,4 +150,9 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+const logout= (req,res)=>{
+  res.cookie('jwt', '', { maxAge: 1 }); // Clear the JWT token
+  res.status(200).json({ message: 'Logged out successfully' });
+}
+
+module.exports = { registerUser, loginUser ,logout};

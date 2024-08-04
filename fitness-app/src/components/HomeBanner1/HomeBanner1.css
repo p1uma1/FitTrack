@@ -1,127 +1,178 @@
+/* HomeBanner1.css */
 .meters {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.card {
+  background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+  border: 1px solid var(--primary-color);
+  border-radius: 15px;
+  margin: 20px;
+  padding: 20px;
+  width: calc(33% - 40px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.card-header-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-header-box-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-header-box-value {
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 5px;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e64a19;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+input[type="number"] {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+  width: 60%;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: border-color 0.3s;
+}
+
+input[type="number"]:focus {
+  border-color: var(--primary-color);
+}
+
+input[type="number"]::placeholder {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .card {
+    width: calc(50% - 40px);
   }
-  
-  .meters .card {
-    min-width: 300px;
-    min-height: 300px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px black;
-    transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(100% - 40px);
     margin: 10px;
-    display: flex;
+    padding: 15px;
+  }
+
+  .card-header-box-name {
+    font-size: 1.2rem;
+  }
+
+  .card-header-box-value {
+    font-size: 1rem;
+  }
+
+  .input-container {
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
+    align-items: stretch;
   }
-  
-  .meters .card:nth-child(1) {
-    background: linear-gradient(90deg, #FF6F61, #FFA07A); /* Coral to Light Salmon */
+
+  input[type="number"] {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 10px;
   }
-  
-  .meters .card:nth-child(2) {
-    background: linear-gradient(90deg, #6A5ACD, #836FFF); /* Slate Blue to Light Slate Blue */
-  }
-  
-  .meters .card:nth-child(3) {
-    background: linear-gradient(90deg, #32CD32, #98FB98); /* Lime Green to Pale Green */
-  }
-  
-  .meters .card:nth-child(4) {
-    background: linear-gradient(90deg, #FFD700, #FFEC8B); /* Gold to Light Goldenrod Yellow */
-  }
-  
-  .meters .card:nth-child(5) {
-    background: linear-gradient(90deg, #1E90FF, #87CEFA); /* Dodger Blue to Light Sky Blue */
-  }
-  
-  .meters .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+  button {
     width: 100%;
   }
-  
-  .meters .card-header-box {
-    display: flex;
-    flex-direction: column;
-    min-width: 49%;
-    background-color: white;
-    aspect-ratio: 1/1;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px black;
-    border-radius: 10px;
+}
+
+@media (max-width: 480px) {
+  .card-header-box-name {
+    font-size: 1rem;
   }
-  
-  .meters .card-header-box-name {
-    font-size: 12px;
-    font-weight: bold;
-    color: rgb(7, 7, 7);
+
+  .card-header-box-value {
+    font-size: 0.9rem;
   }
-  
-  .meters .card-header-box-value {
-    font-size: 12px;
-    color: rgb(7, 7, 7);
-  }
-  
-  .meters .card button {
-    background-color: #ffffff; /* White background */
-    color: #333333; /* Dark grey text */
-    border: none; /* Dark grey border */
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
-  }
-  
-  /* Hover state */
-  .meters .card button:hover {
-    background-color: #333333; /* Dark grey background */
-    color: #ffffff; /* White text */
-    border-color: #ffffff; /* White border */
-  }
-  
+
   .input-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-top: 10px;
   }
-  
-  .input-container input {
-    margin: 5px 0;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
+
+  input[type="number"] {
+    padding: 8px;
   }
-  
-  .input-container button {
-    margin: 5px 0;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
+
+  button {
+    padding: 8px 10px;
+    font-size: 0.9rem;
   }
-  
-  .input-container button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
+.card-footer {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.card-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.card-footer a:hover {
+  color: #e64a19;
+}

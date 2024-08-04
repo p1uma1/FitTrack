@@ -6,7 +6,6 @@ const getExercisePlans = async (req, res) => {
   const userId = req.user._id;
   try {
     const plans = await ExercisePlan.find({ userId }).populate('workouts');
-    console.log(plans);
     res.status(200).json(plans);
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong', error });
@@ -31,7 +30,7 @@ const getExercisePlanbyId = async (req, res) => {
 };
 
 const createExercisePlan = async (req, res) => {
-  console.log('create exercise');
+
   try {
     const { userId, name, workouts } = req.body;
     const newPlan = new ExercisePlan({ userId, name, workouts });
@@ -43,8 +42,6 @@ const createExercisePlan = async (req, res) => {
 };
 
 const deleteExercisePlan = async (req, res) => {
-
-  console.log('delete called');
   try {
     const { exercisePlanId } = req.params;
     const deletedPlan = await ExercisePlan.findByIdAndDelete(exercisePlanId);
@@ -64,7 +61,6 @@ const getWorkouts = async (req, res) => {
   try {
     const exercisePlan = await ExercisePlan.findById(exercisePlanId).populate('workouts.workout');
     if (!exercisePlan) {
-      console.log('failed');
       return res.status(404).json({ message: 'Exercise plan not found' });
     }
 
@@ -75,7 +71,6 @@ const getWorkouts = async (req, res) => {
 };
 
 const updateExercisePlan = async (req, res) => {
-  console.log('create exercise');
   try {
     const { userId, name, workouts } = req.body;
     const { exercisePlanId } = req.params;

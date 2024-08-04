@@ -6,7 +6,7 @@ import HomeBanner3 from '../components/HomeBanner3/HomeBanner3'
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      
       <HomeBanner1/>
       <HomeBanner2/>
       <HomeBanner3/>

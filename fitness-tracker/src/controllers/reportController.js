@@ -42,7 +42,6 @@ const getReports = async (req, res) => {
 // Update Report Function
 const updateReport = async (req, res) => {
   const userId = req.user._id;
-  console.log(userId);
   const { type, date, value } = req.body;
 
   try {
@@ -54,10 +53,8 @@ const updateReport = async (req, res) => {
       return res.status(404).json({ message: 'Report not found' });
     }
 
-    // Push new data entry into the data array
     report.data.push({ date, value });
 
-    // Save the updated report document
     await report.save();
 
     res.status(200).json(report);
