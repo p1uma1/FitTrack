@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import '../HomeBanner2/HomeBanner2.css';
+import './HomeBanner3.css';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';

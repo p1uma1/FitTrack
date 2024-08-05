@@ -7,10 +7,15 @@
   --coll: #ff5733;;
 }
 
-body{
+body {
   background-color: rgb(51, 51, 51);
   color: white;
+  background-image: url('https://wallpapercave.com/wp/wp2406589.jpg');
+  background-size: cover; /* Makes sure the background image covers the entire body */
+  background-position: center; /* Centers the background image */
+  background-attachment: fixed; /* Keeps the background image fixed during scrolling */
 }
+
 .head1{
   -webkit-text-stroke: 1px var(--coll);
   color: transparent;
@@ -24,5 +29,5 @@ body{
 ::-webkit-scrollbar-thumb{
   border-radius: 10px;
   background-color: black;
-  box-shadow: yellow;
+
 }
