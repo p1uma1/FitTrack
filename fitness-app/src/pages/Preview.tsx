@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Styled components
 const HeroSection = styled.section`
-  background: url('path_to_your_image.jpg') no-repeat center center/cover;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -41,8 +41,8 @@ const CTAButton = styled.a`
 
 const Main = styled.main`
   padding: 4rem 2rem;
-  background-color: #1e1e1e;
-  color: #fff;
+
+  color: #e0e0e0; /* Light text color */
   text-align: center;
 `;
 
@@ -53,7 +53,7 @@ const Section = styled.section`
 const SectionTitle = styled.h2`
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  color: #ff5733;
+  color: #ff5733; /* Accent color for titles */
 `;
 
 const SectionContent = styled.p`
@@ -68,6 +68,7 @@ const Footer = styled.footer`
   text-align: center;
 `;
 
+// React functional component
 const Preview: React.FC = () => {
   return (
     <div>
@@ -107,6 +108,9 @@ const Preview: React.FC = () => {
           </form>
         </Section>
       </Main>
+      <Footer>
+        <p>&copy; 2024 Your Fitness App. All rights reserved.</p>
+      </Footer>
     </div>
   );
 };
