@@ -1,0 +1,111 @@
+.about-footer {
+  background-color: #121212; /* Maintain the original background for the footer */
+  color: var(--text-light-grey);
+}
+
+.social-media {
+  color: var(--text-light-grey);
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  border-bottom: 1px solid #4a4a4a;
+}
+
+.social-media-left {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .social-media-left {
+    display: block;
+    margin-right: 20px;
+  }
+}
+
+.social-media-right {
+  display: flex; /* Ensure social media icons are evenly spaced */
+}
+
+.social-media-right a {
+  color: var(--text-light-grey);
+  margin: 0 8px; /* Add uniform margin */
+  transition: color 0.3s;
+}
+
+.social-media-right a:hover {
+  color: var(--text-dark-grey);
+}
+
+.footer-container {
+  padding: 32px;
+  display: flex; /* Use flexbox for footer layout */
+  justify-content: space-between; /* Distribute columns evenly */
+  flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+  text-align: center; /* Center align text */
+}
+
+.col {
+  display: flex; /* Use flexbox for the column */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center align items horizontally */
+  margin: 0 16px; /* Adjust margins for consistency */
+  flex: 1; /* Allow columns to grow equally */
+  min-width: 200px; /* Set a minimum width for responsiveness */
+}
+
+.footer-title {
+  font-size: 1.5rem; /* Title size */
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 8px; /* Adjust margin for better spacing */
+}
+
+.text-reset {
+  color: var(--text-dark-grey); /* Set text color to dark grey */
+  font-size: 0.9rem; /* Smaller text size */
+  text-align: center; /* Center align text */
+}
+
+.text-reset:hover {
+  color: var(--text-light-grey); /* Change color on hover */
+}
+
+.footer-container p, 
+.footer-container a {
+  color: white;
+  margin-bottom: 4px; /* Smaller margin for better balance */
+}
+
+.footer-container a:hover {
+  color: #999;
+  text-decoration: none;
+}
+
+/* Only change the color for the copyright part */
+.footer-copyright {
+  background-color: var(--black); /* Darker color just for the copyright section */
+  padding: 16px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Stack columns vertically on small screens */
+    align-items: center; /* Center align all items */
+  }
+
+  .col {
+    margin: 16px 0; /* Adjust margin for vertical spacing */
+  }
+
+  .social-media {
+    flex-direction: column; /* Stack social media icons vertically */
+    align-items: center; /* Center align */
+  }
+
+  .social-media-right {
+    justify-content: center; /* Center social media icons */
+  }
+}

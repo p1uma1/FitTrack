@@ -20,6 +20,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@mui/x-charts": "^7.10.0",
     "axios": "^1.7.2",
+    "firebase": "^10.14.1",
     "jwt-decode": "^4.0.0",
     "mdb-react-ui-kit": "^8.0.0",
     "react": "^18.3.1",

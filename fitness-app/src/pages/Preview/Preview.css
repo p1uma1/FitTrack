@@ -1,0 +1,123 @@
+:root {
+    --whitish: #ffffff;          /* White text color */
+    --light-grey: #f5f5f5;       /* Light grey background */
+    --red: #dd3333;              /* Red color */
+    --black: #000000;            /* Black color */
+    --text-light-grey: #d3d3d3;  /* Light grey text */
+    --text-dark-grey: #666666;   /* Dark grey text */
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--light-grey);
+    color: var(--text-dark-grey);
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/523851bce4b0a71f5f108966/1451348463564-TFGMNS1O6K4PL5ZOAWQE/heat_kiel-12.jpg?format=2500w');
+    background-size: cover; /* Ensures the image covers the section without repeating */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    color: var(--whitish); /* Text color */
+    text-align: center; /* Center align text */
+    padding: 0 20px; /* Optional padding */
+}
+
+
+.headline {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.subheadline {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* CTA Button */
+/* CTA Button */
+.cta-button {
+    background-color: var(--red);
+    color: var(--whitish);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border: 2px solid var(--red); /* Set border color */
+    border-radius: 5px;
+    font-size: 1.5rem;
+    transition: background 0.3s ease, border-color 0.3s ease; /* Add transition for border */
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+.cta-button:hover {
+    background-color: var(--black); /* Change background color to black on hover */
+    border-color: var(--red); /* Keep the border color the same */
+}
+
+
+/* Main Section */
+.main {
+    padding: 4rem 2rem;
+    color: var(--text-dark-grey);
+    text-align: center;
+}
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+    font-weight: bold; /* Make title bold */
+}
+
+.section-content {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: var(--text-dark-grey);
+}
+
+/* Additional Styling for Accessibility and Usability */
+.section-content {
+    max-width: 800px; /* Limit width for readability */
+    margin: 0 auto; /* Center content */
+}
+
+@media (max-width: 768px) {
+    .headline {
+        font-size: 3rem; /* Smaller font on mobile */
+    }
+
+    .subheadline {
+        font-size: 1.5rem; /* Smaller font on mobile */
+    }
+
+    .cta-button {
+        font-size: 1.2rem; /* Smaller button text on mobile */
+    }
+
+    .section-title {
+        font-size: 2rem; /* Smaller title on mobile */
+    }
+
+    .section-content {
+        font-size: 1.2rem; /* Smaller content text on mobile */
+    }
+}

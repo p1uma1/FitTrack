@@ -1,33 +1,127 @@
-*{
+/* Global styles */
+* {
   margin: 0;
   padding: 0;
 }
 
-:root{
-  --coll: #ff5733;;
+:root {
+  --whitish: #ffffff;         /* White background */
+  --light-grey: #f5f5f5;     /* Light grey background */
+  --red: #dd3333;            /* Red color */
+  --black: #000000; 
+  --dark-background: #121212; /* Black color */
+  --text-light-grey: #d3d3d3;/* Light grey text */
+  --text-dark-grey: #666666;  /* Dark grey text */
 }
 
 body {
-  background-color: rgb(51, 51, 51);
-  color: white;
-  background-image: url('https://wallpapercave.com/wp/wp2406589.jpg');
-  background-size: cover; /* Makes sure the background image covers the entire body */
-  background-position: center; /* Centers the background image */
-  background-attachment: fixed; /* Keeps the background image fixed during scrolling */
+  background-color: var(--light-grey); 
+  color: var(--text-dark-grey);      
 }
 
-.head1{
-  -webkit-text-stroke: 1px var(--coll);
+body::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar */
+}
+
+.head1 {
+  -webkit-text-stroke: 1px var(--black); /* Black color */
   color: transparent;
   font-size: 10rem;
   font-weight: 900;
   text-align: center;
 }
-::-webkit-scrollbar{
-  width:4px;
-}
-::-webkit-scrollbar-thumb{
-  border-radius: 10px;
-  background-color: black;
 
+/* Button Styles */
+button, .cta-button {
+  background-color: var(--red); /* Red for buttons */
+  color: var(--whitish); /* White text for contrast */
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+button:hover, .cta-button:hover {
+  background-color: transparent; /* Darker red shade for hover effect */
+}
+
+/* Section titles */
+h2 {
+  color: var(--black); /* Black color for section titles */
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-dark-grey); /* Dark grey for paragraphs */
+}
+
+/* Footer */
+footer {
+  background-color: var(--black); /* Black for footer background */
+  color: var(--whitish); /* White for footer text */
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .head1 {
+    font-size: 8rem; /* Reduce font size for large tablets */
+  }
+  
+  h2 {
+    font-size: 2rem; /* Adjust section title size */
+  }
+
+  p {
+    font-size: 1.25rem; /* Reduce paragraph font size */
+  }
+
+  button, .cta-button {
+    font-size: 1.25rem; /* Smaller button text */
+    padding: 0.75rem 1.5rem; /* Reduce button padding */
+  }
+}
+
+@media (max-width: 768px) {
+  .head1 {
+    font-size: 6rem; /* Further reduce font size for tablets */
+  }
+
+  h2 {
+    font-size: 1.75rem; /* Further adjust section title size */
+  }
+
+  p {
+    font-size: 1rem; /* Further reduce paragraph font size */
+  }
+
+  button, .cta-button {
+    font-size: 1rem; /* Button text size for mobile */
+    padding: 0.5rem 1rem; /* Further reduce button padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .head1 {
+    font-size: 4rem; /* Small font size for mobile devices */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Section title size for mobile */
+  }
+
+  p {
+    font-size: 0.875rem; /* Smaller paragraph font size */
+  }
+
+  button, .cta-button {
+    font-size: 0.875rem; /* Small button text */
+    padding: 0.5rem; /* Smaller button padding */
+  }
 }

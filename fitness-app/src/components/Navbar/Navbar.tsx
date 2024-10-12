@@ -1,6 +1,7 @@
-import React from "react";
-import logo from "../../assets/logo.png";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { storage } from "../../assets/firebaseConfig"; // Import your storage here
+import { ref, getDownloadURL } from 'firebase/storage';
 import "./Navbar.css";
 import AuthPopup from "../AuthPopup/AuthPopup";
 
@@ -12,27 +13,37 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick }) => {
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = React.useState<boolean>(false);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const imageRef = ref(storage, 'gs://taskmanager-b3c80.appspot.com/Fitness_Tracker-removebg-preview.png'); // Replace with your image path
+        const url = await getDownloadURL(imageRef);
+        setImageUrl(url);
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
+    };
+
+    fetchImage();
+  }, []);
 
   const handleLogoutClick = async () => {
-    console.log('handle logout');
     try {
-      const response = await fetch('http://localhost:3000/api/users/logout', { // Ensure this URL is correct
+      const response = await fetch('http://localhost:3000/api/users/logout', {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
-      console.log('logging out', response);
-
       setIsLoggedIn(false);
       localStorage.setItem('isLoggedIn', 'false');
-      navigate('/preview'); 
-
+      navigate('/preview');
     } catch (error) {
-      console.log('Error status:', error);
+      console.error('Error status:', error);
     }
   };
 
@@ -47,8 +58,8 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
 
   return (
     <nav>
-      <img src={logo} alt="logo" />
-
+      {imageUrl && <img src={imageUrl} alt="Logo"/>} {/* Adjust styles as needed */}
+      
       <Link to="/">Home</Link>
       <a href="#" onClick={onAboutClick} style={{ color: '#fff', marginRight: '1em' }}>About</a>
       <Link to="/profile" onClick={handleProfileClick}>

@@ -1,56 +1,62 @@
+:root {
+  --whitish: #ffffff;         /* White background */
+  --light-grey: #f5f5f5;     /* Light grey background */
+  --red: #dd3333;            /* Red color */
+  --black: #000000;          /* Black color */
+  --text-light-grey: #d3d3d3;/* Light grey text */
+  --text-dark-grey: #666666; /* Dark grey text */
+  --primary-color: #dd3333;  /* Primary color (red) */
+  --background-color: #333333;/* Dark background */
+  --text-color: #ffffff;     /* White text */
+  --border-color: #444444;   /* Dark grey border */
+}
+
 nav {
-    background-color: black;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 50px;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 1.2rem;
-    color: aliceblue;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    gap: 30px;
-  }
-  :root {
-    --primary-color: #ff5733;
-    --background-color: #333333;
-    --text-color: #ffffff;
-    --border-color: #444444;
-  }
-  
-  nav img {
-    height: 60px;
-    width: auto;
-  }
-  
-  nav a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    transition: 0.3s ease-in-out;
-  }
-  
-  nav a:hover {
-    color: #ff5733;;
-  }
-  
-  nav button {
-    background-color: rgb(0, 0, 0);
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 1.2rem;
-    color: rgb(255, 255, 255);
-    transition: 0.3s ease-in-out;
-    padding: 10px;
-  }
-  
-  nav button:hover {
-    color: #ff5733;;
-  }
-  
+  background-color: var(--black);
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  gap: 30px;
+}
+
+nav img {
+  height: 100px; /* Increase the height of the logo */
+  width: auto; /* Keep the width auto to maintain aspect ratio */
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: 0.3s ease-in-out;
+}
+
+nav a:hover {
+  color: var(--primary-color); /* Change to primary color on hover */
+}
+
+nav button {
+  background-color: var(--black);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  transition: 0.3s ease-in-out;
+  padding: 10px;
+}
+
+nav button:hover {
+  color: var(--primary-color); /* Change to primary color on hover */
+}

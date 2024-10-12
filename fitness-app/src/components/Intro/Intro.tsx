@@ -1,6 +1,5 @@
 import React from 'react';
 import './Intro.css';
-import Image from 'next/image';
 import Logo from '@/assets/logo.png';
 interface AuthPopupProps {
     setShowpopup: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,7 +9,7 @@ const IntroductionPage: React.FC<AuthPopupProps> = ({ setShowpopup }) => {
   return (
     <div className="intro-page">
       <header className="intro-header">
-        <Image src={Logo} alt="Logo" className="logo" />
+        <img src={Logo} alt="Logo" className="logo" />
       </header>
       <main className="intro-main">
         <h1>Welcome to Fitness Tracker</h1>

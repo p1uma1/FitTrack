@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
-import About from './pages/About/About';
+import About from './components/About/About';
 import Navbar from './components/Navbar/Navbar';
-import Preview from './pages/Preview';
+import Preview from './pages/Preview/Preview';
 import CreateExercisePlan from './components/WokoutScheduleForm/CreateExercisePlan';
 import Page from './pages/WorkoutPage/page';
 import ExercisePlanPage from './pages/ExercisePlanPage/ExercisePlanPage';
@@ -61,6 +61,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <About ref={footerRef} />
+      
     </Router>
   );
 }
