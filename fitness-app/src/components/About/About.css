@@ -81,12 +81,25 @@
   text-decoration: none;
 }
 
-/* Only change the color for the copyright part */
 .footer-copyright {
   background-color: var(--black); /* Darker color just for the copyright section */
   padding: 16px;
   text-align: center;
   color: white;
+}
+
+/* Button styling */
+button {
+  background-color: var(--red); /* Button background color */
+  color: var(--white); /* Button text color */
+  padding: 12px 24px; /* Padding for a nice look */
+  border: none; /* Remove border */
+  cursor: pointer; /* Show pointer on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+button:hover {
+  background-color: #b32b2b; /* Darker red on hover */
 }
 
 /* Responsive Design */
@@ -107,5 +120,16 @@
 
   .social-media-right {
     justify-content: center; /* Center social media icons */
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-title {
+    font-size: 1.25rem; /* Slightly reduce title size on very small screens */
+  }
+
+  .footer-container p, 
+  .footer-container a {
+    font-size: 0.85rem; /* Slightly reduce text size for better fit */
   }
 }

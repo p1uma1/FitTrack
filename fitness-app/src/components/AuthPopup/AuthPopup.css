@@ -1,92 +1,101 @@
+:root {
+  --whitish: #ffffff;          /* White text color */
+  --light-grey: #f5f5f5;       /* Light grey background */
+  --red: #dd3333;              /* Red color */
+  --black: #000000;            /* Black color */
+  --text-light-grey: #d3d3d3;  /* Light grey text */
+  --text-dark-grey: #666666;   /* Dark grey text */
+}
+
 .popup {
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100vw;
-   height: 100vh;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: rgba(0, 0, 0, 0.8); /* Slightly lighter background for better visibility */
-   z-index: 1000;
- }
- 
- .authform {
-   display: flex;
-   width: 50%;
-   height: auto;
-   background-color: #1e1e1e;
-   border-radius: 8px;
-   overflow: hidden;
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-   position: relative; /* Ensure the close button is positioned relative to the form */
- }
- 
- .authform .left {
-   width: 50%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   padding: 20px;
-   background-color: #333; /* Different background color for contrast */
- }
- 
- .left img {
-   max-width: 100%;
-   height: auto;
- }
- 
- .authform .right {
-   width: 50%; /* Adjusted width for balance */
-   padding: 40px;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center; /* Align items to the center */
- }
- 
- .authform .right h1 {
-   margin-bottom: 20px; /* Adjusted margin for better spacing */
-   font-size: 24px;
-   font-weight: 300;
-   color: #f5f5f5;
-   text-align: center;
- }
- 
- .authform .right form {
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   gap: 10px; /* Adjusted gap for better spacing */
- }
- 
- .authform .form_input_leftright {
-   display: flex;
-   gap: 10px; /* Adjusted gap for better spacing */
-   margin-bottom: 20px; /* Added margin-bottom for separation */
- }
- 
- .popup .close {
-   position: absolute;
-   top: 10px;
-   right: 10px;
-   background: none;
-   border: none;
-   font-size: 1.5rem;
-   color: #f5f5f5; /* White color for visibility */
-   cursor: pointer;
- }
- 
- .error {
-   color: red;
-   font-size: 0.9rem; /* Slightly smaller font size for errors */
-   margin-top: 5px;
- }
- 
- .email.error,
- .password.error,
- .confirm.password.error,
- .authentication.error {
-   margin-bottom: 10px;
- }
- 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+  z-index: 1000;
+}
+
+.authform {
+  display: flex;
+  width: 50%;
+  height: auto;
+  background-color: var(--light-grey); /* Use light grey background for the form */
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative; /* Ensure the close button is positioned relative to the form */
+}
+
+.authform .left {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--black); /* Black background for contrast */
+}
+
+.left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.authform .right {
+  background-color: var(--light-grey);
+  width: 50%; /* Adjusted width for balance */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Align items to the center */
+}
+
+.authform .right h1 {
+  margin-bottom: 20px; /* Adjusted margin for better spacing */
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--black); /* Light grey text for visibility */
+  text-align: center;
+}
+
+.authform .right form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjusted gap for better spacing */
+}
+
+.authform .form_input_leftright {
+  display: flex;
+  gap: 10px; /* Adjusted gap for better spacing */
+  margin-bottom: 20px; /* Added margin-bottom for separation */
+}
+
+.popup .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--whitish); /* White color for visibility */
+  cursor: pointer;
+}
+
+.error {
+  color: var(--red); /* Use red variable for error messages */
+  font-size: 0.9rem; /* Slightly smaller font size for errors */
+  margin-top: 5px;
+}
+
+.email.error,
+.password.error,
+.confirm.password.error,
+.authentication.error {
+  margin-bottom: 10px;
+}

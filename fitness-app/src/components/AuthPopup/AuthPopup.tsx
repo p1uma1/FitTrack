@@ -7,6 +7,8 @@ import Option from '@mui/joy/Option';
 import { AiOutlineClose } from 'react-icons/ai';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { storage } from "../../assets/firebaseConfig"; // Import your storage here
+import { ref, getDownloadURL } from 'firebase/storage';
 
 interface AuthPopupProps {
   setShowpopup: (showpopup: boolean) => void;
@@ -21,14 +23,26 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
     email: '',
     password: '',
     confirmPassword: '',
-    age: '',
-    weight: '',
-    gender: '',
-    height: '',
   });
   const [emailError, setEmailError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
+  const [error, setError] = useState<string>(''); // General error state
+  const [imageUrl, setImageUrl] = useState("");
+
+  React.useEffect(() => {
+    const fetchImage = async () => {
+      try {
+        const imageRef = ref(storage, 'gs://taskmanager-b3c80.appspot.com/Fitness_Tracker-removebg-preview.png'); // Replace with your image path
+        const url = await getDownloadURL(imageRef);
+        setImageUrl(url);
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
+    };
+
+    fetchImage();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (!e.target) return;
@@ -38,6 +52,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
   
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(''); // Reset error before new submission
     try {
       const response = await axios.post('http://localhost:3000/api/users/login', {
         email: formData.email,
@@ -49,24 +64,26 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
       
       const data = response.data;
       if (data.errors) {
-        setEmailError(data.errors.email);
-        setPasswordError(data.errors.password);
+        // Set specific error messages or general error
+        setEmailError(data.errors.email || '');
+        setPasswordError(data.errors.password || '');
+        setError(data.errors.general || 'An unknown error occurred during login.');
       } else {
         const userId = data.user;
         localStorage.setItem('userId', userId);
-        console.log(userId,' was the userId');
         setShowpopup(false);
         setIsLoggedIn(true);
         navigate('/');
       }
     } catch (error) {
       console.error('Error logging in:', error);
+      setError('An error occurred while logging in. Please try again.'); // General error
     }
   };
   
-
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(''); // Reset error before new submission
     if (formData.password !== formData.confirmPassword) {
       setConfirmPasswordError("Passwords don't match");
       return;
@@ -75,10 +92,6 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
       const response = await axios.post('http://localhost:3000/api/users/register', {
         email: formData.email,
         password: formData.password,
-        age: formData.age,
-        weight: formData.weight,
-        gender: formData.gender,
-        height: formData.height,
       }, { headers: { 'Content-Type': 'application/json' } });
       
       console.log(response.data);
@@ -90,6 +103,9 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
         const errors = error.response.data.errors;
         setEmailError(errors.email || '');
         setPasswordError(errors.password || '');
+        setError(errors.general || 'An unknown error occurred during signup.');
+      } else {
+        setError('An error occurred while signing up. Please try again.'); // General error
       }
     }
   };
@@ -102,10 +118,11 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
       {showSignup ? (
         <div className='authform'>
           <div className='left'>
-            <img src={Logo} alt="Logo" />
+            <img src={imageUrl} alt="Logo" />
           </div>
           <div className='right'>
             <h1>Create an account</h1>
+            {error && <div className="general error">{error}</div>} {/* Display general error */}
             <form onSubmit={handleSignup}>
               <Input
                 placeholder="Enter your email here"
@@ -136,51 +153,6 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
                 required
               />
               <div className='confirm password error'>{confirmPasswordError}</div>
-              <div className='form_input_leftright'>
-                <Input
-                  size="lg"
-                  variant="outlined"
-                  type="number"
-                  placeholder='Age'
-                  name="age"
-                  value={formData.age}
-                  onChange={handleChange}
-                  required
-                />
-                <Input
-                  size="lg"
-                  variant="outlined"
-                  type="number"
-                  placeholder='Weight'
-                  name="weight"
-                  value={formData.weight}
-                  onChange={handleChange}
-                />
-                <br />
-                <Select
-                  placeholder="Gender"
-                  size="lg"
-                  name="gender"
-                  value={formData.gender}
-                  onChange={(_, newValue) => handleChange({ target: { name: 'gender', value: newValue } } as any)}
-                >
-                  <Option value="male">Male</Option>
-                  <Option value="female">Female</Option>
-                  <Option value="other">Other</Option>
-                </Select>
-              </div>
-              <div className='form_input_leftright'>
-                <label htmlFor='height'>Height</label>
-                <Input
-                  size="lg"
-                  variant="outlined"
-                  type="number"
-                  placeholder='cm'
-                  name="height"
-                  value={formData.height}
-                  onChange={handleChange}
-                />
-              </div>
               <button type="submit">Signup here</button>
             </form>
           </div>
@@ -188,10 +160,11 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
       ) : (
         <div className='authform'>
           <div className='left'>
-            <img src={Logo} alt="Logo" />
+            <img src={imageUrl} alt="Logo" />
           </div>
           <div className='right'>
             <h1>Please Login to continue</h1>
+            {error && <div className="general error">{error}</div>} {/* Display general error */}
             <form onSubmit={handleLogin}>
               <Input
                 placeholder="Enter your email here"

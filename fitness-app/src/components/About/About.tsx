@@ -4,7 +4,7 @@ import './About.css'; // Import the CSS file
 
 const About = React.forwardRef<HTMLDivElement>((props, ref) => {
   return (
-    <footer ref={ref} className="about-footer">
+    <footer ref={ref} className="about-footer" style={{padding:"20px 0 0 0"}}>
       {/* Section: Social media */}
       <section className="social-media">
         <div className="social-media-left">
@@ -20,13 +20,13 @@ const About = React.forwardRef<HTMLDivElement>((props, ref) => {
           <a href="#">
             <FaGoogle />
           </a>
-          <a href="#">
+          <a href="https://www.instagram.com/p1uma1/">
             <FaInstagram />
           </a>
           <a href="#">
             <FaLinkedin />
           </a>
-          <a href="#">
+          <a href="https://github.com/p1uma1">
             <FaGithub />
           </a>
         </div>

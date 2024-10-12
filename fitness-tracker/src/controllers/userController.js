@@ -86,10 +86,6 @@ const registerUser = async (req, res) => {
     const newUser = new User({
       email,
       password,
-      age: parseInt(age),
-      weight: parseFloat(weight),
-      gender,
-      height: parseFloat(height),
     });
 
     const savedUser = await newUser.save();

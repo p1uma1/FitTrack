@@ -58,10 +58,10 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
 
   return (
     <nav>
-      {imageUrl && <img src={imageUrl} alt="Logo"/>} {/* Adjust styles as needed */}
+      {imageUrl && <img src={imageUrl} alt="Logo" />} {/* Adjust styles as needed */}
       
       <Link to="/">Home</Link>
-      <a href="#" onClick={onAboutClick} style={{ color: '#fff', marginRight: '1em' }}>About</a>
+      <a href="#" className="about-link" onClick={onAboutClick}>About</a> {/* Changed to className */}
       <Link to="/profile" onClick={handleProfileClick}>
         Profile
       </Link>

@@ -9,15 +9,16 @@
   --background-color: #333333;/* Dark background */
   --text-color: #ffffff;     /* White text */
   --border-color: #444444;   /* Dark grey border */
+  --hover-color: #dd3333;    /* Hover color for all components */
 }
 
 nav {
   background-color: var(--black);
   height: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Center all items */
   align-items: center;
-  padding: 0 50px;
+  padding: 0 50px; /* Keep original padding for larger screens */
   position: sticky;
   top: 0;
   z-index: 10;
@@ -40,10 +41,6 @@ nav a {
   transition: 0.3s ease-in-out;
 }
 
-nav a:hover {
-  color: var(--primary-color); /* Change to primary color on hover */
-}
-
 nav button {
   background-color: var(--black);
   border: none;
@@ -57,6 +54,38 @@ nav button {
   padding: 10px;
 }
 
+/* Consistent hover styles */
+nav a:hover,
 nav button:hover {
-  color: var(--primary-color); /* Change to primary color on hover */
+  color: var(--hover-color); /* Change color to the hover color */
+  background-color: transparent; /* Optional: keep button background transparent */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 20px; /* Reduce padding for mobile */
+    flex-direction: row; /* Keep items in a row for larger screens */
+    gap: 15px; /* Reduce gap */
+  }
+
+  nav img {
+    height: 80px; /* Adjust logo height for mobile */
+  }
+
+  nav a, nav button {
+    font-size: 1rem; /* Slightly smaller font size for mobile */
+    padding: 8px; /* Adjust padding for mobile buttons */
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    font-size: 0.9rem; /* Smaller font size for very small screens */
+    padding: 0 10px; /* Further reduce padding */
+  }
+
+  nav img {
+    height: 60px; /* Smaller logo for mobile */
+  }
 }
