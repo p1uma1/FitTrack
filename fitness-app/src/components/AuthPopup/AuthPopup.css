@@ -1,10 +1,10 @@
 :root {
-  --whitish: #ffffff;          /* White text color */
-  --light-grey: #f5f5f5;       /* Light grey background */
-  --red: #dd3333;              /* Red color */
-  --black: #000000;            /* Black color */
-  --text-light-grey: #d3d3d3;  /* Light grey text */
-  --text-dark-grey: #666666;   /* Dark grey text */
+  --whitish: #ffffff;
+  --light-grey: #f5f5f5;
+  --red: #dd3333;
+  --black: #000000;
+  --text-light-grey: #d3d3d3;
+  --text-dark-grey: #666666;
 }
 
 .popup {
@@ -28,7 +28,7 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative; /* Ensure the close button is positioned relative to the form */
+  position: relative;
 }
 
 .authform .left {
@@ -37,7 +37,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: var(--black); /* Black background for contrast */
+  background-color: var(--black);
 }
 
 .left img {
@@ -47,19 +47,19 @@
 
 .authform .right {
   background-color: var(--light-grey);
-  width: 50%; /* Adjusted width for balance */
+  width: 50%;
   padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Align items to the center */
+  align-items: center;
 }
 
 .authform .right h1 {
-  margin-bottom: 20px; /* Adjusted margin for better spacing */
+  margin-bottom: 20px;
   font-size: 24px;
   font-weight: 300;
-  color: var(--black); /* Light grey text for visibility */
+  color: var(--black);
   text-align: center;
 }
 
@@ -67,13 +67,13 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adjusted gap for better spacing */
+  gap: 10px;
 }
 
 .authform .form_input_leftright {
   display: flex;
-  gap: 10px; /* Adjusted gap for better spacing */
-  margin-bottom: 20px; /* Added margin-bottom for separation */
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .popup .close {
@@ -83,19 +83,18 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: var(--whitish); /* White color for visibility */
+  color: var(--whitish);
   cursor: pointer;
 }
 
 .error {
-  color: var(--red); /* Use red variable for error messages */
-  font-size: 0.9rem; /* Slightly smaller font size for errors */
+  color: var(--red);
+  font-size: 0.9rem;
   margin-top: 5px;
 }
 
 .email.error,
 .password.error,
-.confirm.password.error,
 .authentication.error {
   margin-bottom: 10px;
 }

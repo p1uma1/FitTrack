@@ -39,9 +39,10 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
           'Content-Type': 'application/json',
         },
       });
+      if(response.ok){
       setIsLoggedIn(false);
       localStorage.setItem('isLoggedIn', 'false');
-      navigate('/preview');
+      navigate('/preview');}
     } catch (error) {
       console.error('Error status:', error);
     }

@@ -9,6 +9,8 @@ import Page from './pages/WorkoutPage/page';
 import ExercisePlanPage from './pages/ExercisePlanPage/ExercisePlanPage';
 import UpdateExercisePlan from './components/WokoutScheduleForm/UpdateExrcisePlan';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import SignupPage from './pages/SignupPage/SignupPage';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(localStorage.getItem('isLoggedIn') === 'true');
@@ -53,6 +55,8 @@ function App() {
       <Routes>
         {!isLoggedIn && <Route path="/" element={<Preview />} />}
         {isLoggedIn && <Route path="/" element={<Home />} />}
+        <Route path='/login' element ={<LoginPage setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path='/signup' element ={<SignupPage setIsLoggedIn={setIsLoggedIn}/>} />
         <Route path="/preview" element={<Preview />} />
         <Route path="/workouts/customWorkout" element={<CreateExercisePlan />} />
         <Route path="/workouts/:Type" element={<Page />} />
