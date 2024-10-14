@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
-
 import { AiOutlineEye } from "react-icons/ai";
 import "./HomeBanner1.css";
 import ReportPopup from "../ReportPopup/ReportPopup";
 
-const HomeBanner1 = () => {
-  const [data, setData] = useState<any[]>([]);
-  const [selectedReport, setSelectedReport] = useState<any>(null);
-  const [inputValues, setInputValues] = useState<any>({});
+interface Report {
+  type: string;
+  data: { date: string; value: number }[];
+  unit: string;
+}
+
+const HomeBanner1: React.FC = () => {
+  const [data, setData] = useState<Report[]>([]);
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null);
+  const [inputValues, setInputValues] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const getData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/reports/myreports`, {
+      const response = await fetch("http://localhost:3000/api/reports/myreports", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -27,10 +32,10 @@ const HomeBanner1 = () => {
 
       const result = await response.json();
       setData(result);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
       setError("Failed to fetch data");
+    } finally {
       setLoading(false);
     }
   };
@@ -39,8 +44,8 @@ const HomeBanner1 = () => {
     getData();
   }, []);
 
-  const handleInputChange = (name: string, value: string) => {
-    setInputValues({ ...inputValues, [name]: value });
+  const handleInputChange = (reportType: string, value: string) => {
+    setInputValues({ ...inputValues, [reportType]: value });
   };
 
   const handleUpdate = async (reportType: string) => {
@@ -56,9 +61,8 @@ const HomeBanner1 = () => {
       value: parseFloat(inputValue),
     };
 
-    // Send update to the server
     try {
-      const response = await fetch(`http://localhost:3000/api/reports/myreports`, {
+      const response = await fetch("http://localhost:3000/api/reports/myreports", {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -89,45 +93,48 @@ const HomeBanner1 = () => {
   };
 
   if (loading) {
-    return <div>
-      <div className="card" aria-hidden="true">
-  
-  <div className="card-body">
-    <h5 className="card-title placeholder-glow">
-      <span className="placeholder col-6"></span>
-    </h5>
-    <p className="card-text placeholder-glow">
-      <span className="placeholder col-7"></span>
-      <span className="placeholder col-4"></span>
-      <span className="placeholder col-4"></span>
-      <span className="placeholder col-6"></span>
-      <span className="placeholder col-8"></span>
-    </p>
-    
-  </div>
-</div>
-    </div>;
+    return (
+      <div className="meters">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <div className="card" aria-hidden="true" key={index}>
+            <div className="card-body">
+              <h5 className="card-title placeholder-glow">
+                <span className="placeholder col-6"></span>
+              </h5>
+              <p className="card-text placeholder-glow">
+                <span className="placeholder col-7"></span>
+                <span className="placeholder col-4"></span>
+                <span className="placeholder col-4"></span>
+                <span className="placeholder col-6"></span>
+                <span className="placeholder col-8"></span>
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
   }
+  
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="error-message">{error}</div>;
   }
 
   return (
     <div className="meters">
       {data?.length > 0 &&
-        data.map((item: any, index: number) => (
-          <div className="card" key={index}>
-            <div className="card-header">
-              <div className="card-header-box">
-                <div className="card-header-box-name">{item.type}</div>
-                <div className="card-header-box-value">
+        data.map((item: Report, index: number) => (
+          <div className="meter-card" key={index}>
+            <div className="meter-card-header">
+              <div className="meter-card-header-box">
+                <div className="meter-card-header-box-name">{item.type}</div>
+                <div className="meter-card-header-box-value">
                   {item.data.length > 0 ? item.data[item.data.length - 1].value : 0} {item.unit}
                 </div>
               </div>
             </div>
-           
-            <button onClick={() => setSelectedReport(item)}>
+
+            <button className="meter-card-button" onClick={() => setSelectedReport(item)}>
               Show report <AiOutlineEye />
             </button>
             <div className="input-container">
@@ -137,7 +144,7 @@ const HomeBanner1 = () => {
                 value={inputValues[item.type] || ""}
                 onChange={(e) => handleInputChange(item.type, e.target.value)}
               />
-              <button onClick={() => handleUpdate(item.type)}>Update Value</button>
+              <button className="meter-card-button" onClick={() => handleUpdate(item.type)}>Update Value</button>
             </div>
           </div>
         ))}

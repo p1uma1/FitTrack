@@ -13,29 +13,34 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(localStorage.getItem('isLoggedIn') === 'true');
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!localStorage.getItem('authToken'));
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
       console.log('check auth called');
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        setIsLoggedIn(false);
+        return;
+      }
+
       try {
         const response = await fetch('http://localhost:3000/api/check-auth', {
           method: 'GET',
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`, // Use token in headers
           },
         });
 
         const data = await response.json();
         console.log(data);
         setIsLoggedIn(data.isLoggedIn);
-        localStorage.setItem('isLoggedIn', data.isLoggedIn.toString());
-      } catch (error){
+      } catch (error) {
         setIsLoggedIn(false);
         console.log('error', error);
-        localStorage.setItem('isLoggedIn', 'false');
       }
     };
 
@@ -55,8 +60,8 @@ function App() {
       <Routes>
         {!isLoggedIn && <Route path="/" element={<Preview />} />}
         {isLoggedIn && <Route path="/" element={<Home />} />}
-        <Route path='/login' element ={<LoginPage setIsLoggedIn={setIsLoggedIn}/>} />
-        <Route path='/signup' element ={<SignupPage setIsLoggedIn={setIsLoggedIn}/>} />
+        <Route path='/login' element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path='/signup' element={<SignupPage setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/preview" element={<Preview />} />
         <Route path="/workouts/customWorkout" element={<CreateExercisePlan />} />
         <Route path="/workouts/:Type" element={<Page />} />
@@ -65,7 +70,6 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
       <About ref={footerRef} />
-      
     </Router>
   );
 }

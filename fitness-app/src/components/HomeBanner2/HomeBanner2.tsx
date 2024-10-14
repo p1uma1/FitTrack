@@ -10,33 +10,33 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
 const HomeBanner2 = () => {
-  const [workouts, setWorkouts] = useState<any[]>([])
+  const [workouts, setWorkouts] = useState<any[]>([]);
 
   const getWorkouts = async () => {
     let data: any[] = [
       {
         type: 'Chest',
-        imageUrl: 'https://media.istockphoto.com/id/998035336/photo/muscular-man-standing-in-the-gym.jpg?s=1024x1024&w=is&k=20&c=q5L2hdYrd8fHPN7TmaEWRKedyLDjCTef_T7GjoTmxfY='
+        imageUrl: 'https://cdn.icon-icons.com/icons2/2354/PNG/512/chest_male_icon_143248.png'
       },
       {
         type: 'Back',
-        imageUrl: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFjayUyMGd5bXxlbnwwfHwwfHx8MA%3D%3D'
+        imageUrl: 'https://static.thenounproject.com/png/1861021-200.png'
       },
       {
         type: 'Legs',
-        imageUrl: 'https://media.istockphoto.com/id/804548536/photo/leg-press-exercise.webp?b=1&s=170667a&w=0&k=20&c=bAPniA10tsD7RwuqVjGdxKCTK3fnGUluyP_7vfLO-eY='
+        imageUrl: 'https://cdn-icons-png.flaticon.com/512/4760/4760589.png'
       },
       {
         type: 'Arms',
-        imageUrl: 'https://media.istockphoto.com/id/602331216/photo/bulking-up-those-muscles.webp?b=1&s=170667a&w=0&k=20&c=jv-4k2oEjeej7mzvnw8w1cYWLjmKpnX0QhYpTvPhYiw='
+        imageUrl: 'https://png.pngtree.com/png-vector/20230407/ourmid/pngtree-arm-line-icon-vector-png-image_6682713.png'
       },
       {
         type: 'Shoulders',
-        imageUrl: 'https://media.istockphoto.com/id/931505816/photo/asian-woman-doing-exercise-with-dumbbell-at-gym.jpg?s=1024x1024&w=is&k=20&c=lGvvh-2g4VYAsjK3gMZuZ9PtspPyrgILPfsaicmROMY='
+        imageUrl: 'https://static.thenounproject.com/png/3826963-200.png'
       },
       {
         type: 'Abs',
-        imageUrl: 'https://images.unsplash.com/photo-1577221084712-45b0445d2b00?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2hlc3QlMjB3b3Jrb3V0fGVufDB8fDB8fHww'
+        imageUrl: 'https://media.istockphoto.com/id/858902142/vector/muscular-male-torso-icon.jpg?s=612x612&w=0&k=20&c=nYne7thqGNy9DfYr8yfZ8lqzGWNEILCYkrS0oJnUNbc='
       }
     ];
     setWorkouts(data);
@@ -46,11 +46,9 @@ const HomeBanner2 = () => {
     getWorkouts();
   }, []);
 
-  
-
   return (
     <div>
-      <h1 className='head1'>Workouts</h1>
+      <h1 className='head1-workouts'>Workouts</h1>
 
       <Swiper
         slidesPerView={1}
@@ -87,24 +85,33 @@ const HomeBanner2 = () => {
                 backgroundImage: `url(${item.imageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                height: '300px', // Set a height for the slide
+                height: '300px',
                 display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between', // To space the header and content
                 alignItems: 'center',
-                justifyContent: 'center',
               }}
               onClick={() => {
                 window.location.href = `/workouts/${item.type}`;
               }}
             >
-              <div className='swiper-slide-content'>
-                <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
-                  {item.type}
-                </h2>
+              {/* Card header at the top */}
+              <div className='card-header' style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                color: 'white',
+                width: '100%',
+                textAlign: 'center',
+                padding: '10px 0',
+                fontSize: '1.25rem',
+                fontWeight: 'bold'
+              }}>
+                {item.type}
               </div>
+
+              
             </div>
           </SwiperSlide>
         ))}
-        
       </Swiper>
     </div>
   );

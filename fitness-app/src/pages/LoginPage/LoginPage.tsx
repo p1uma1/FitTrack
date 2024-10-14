@@ -45,42 +45,34 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsLoggedIn }) => {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError(''); // Reset error before new submission
-
+        setError('');
+      
         try {
-            const response = await axios.post('http://localhost:3000/api/users/login', {
-                email: formData.email,
-                password: formData.password
-            }, {
-                headers: { 'Content-Type': 'application/json' },
-                withCredentials: true
-            });
-
-            const data = response.data;
-            if (data.errors) {
-                // Set specific error messages or general error
-                setEmailError(data.errors.email || '');
-                setPasswordError(data.errors.password || '');
-                setError(data.errors.general || 'An unknown error occurred during login.');
-            } else {
-                const userId = data.user;
-                localStorage.setItem('userId', userId);
-                setIsLoggedIn(true);
-                navigate('/'); // Redirect after successful login
-            }
-        } catch (error: any) {
-            console.error('Error logging in:', error);
-            if (axios.isAxiosError(error) && error.response) {
-                // Handle specific server-side validation errors
-                const errors = error.response.data.errors;
-                setEmailError(errors.email || '');
-                setPasswordError(errors.password || '');
-                setError(errors.general || 'An error occurred while logging in. Please try again.'); // General error
-            } else {
-                setError('An error occurred while logging in. Please try again.'); // General error
-            }
+          const response = await axios.post('http://localhost:3000/api/users/login', {
+            email: formData.email,
+            password: formData.password
+          }, {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true
+          });
+      
+          const data = response.data;
+          if (data.errors) {
+            setEmailError(data.errors.email || '');
+            setPasswordError(data.errors.password || '');
+            setError(data.errors.general || 'An unknown error occurred during login.');
+          } else {
+            const token = data.token; // Assume your API returns a token
+            localStorage.setItem('authToken', token);
+            setIsLoggedIn(true);
+            navigate('/');
+          }
+        } catch (error) {
+          console.error('Error logging in:', error);
+          setError('An error occurred while logging in. Please try again.');
         }
-    };
+      };
+      
 
     return (
         <div className="login-container">

@@ -1,36 +1,72 @@
-/* HomeBanner1.css */
 :root {
-  --slate: #262626;
-  --secondhand-grey: #3f3f3f;
-  --whitish: #f5f5f5;
-  --light-grey: #dcdcdc;
+  --whitish: #ffffff;          /* White background */
+  --light-grey: #f5f5f5;       /* Light grey background */
+  --red: #dd3333;              /* Red color */
+  --black: #000000;            /* Black color */
+  --dark-background: #121212;  /* Dark background (very dark grey/black) */
+  --text-light-grey: #d3d3d3;  /* Light grey text */
+  --text-dark-grey: #666666;   /* Dark grey text */
+  --button-text: #000000;      /* Black text color for buttons */
 }
 
 /* Main container for cards */
 .meters {
   display: flex;
   flex-wrap: wrap;
+  height: fit-content;
   justify-content: space-around;
-  padding: 20px;
+  padding: 30px;
+  background-image: url('https://fitnessfactorymaine.com/wp-content/uploads/2017/01/slider_01.jpg');
+  background-size: cover;            /* Ensures the image covers the section without repeating */
+  background-position: center center; /* Centers the image */
+  background-repeat: no-repeat;       /* Prevents the image from repeating */
+  background-attachment: relative;       
+  background-color: var(--dark-background);
 }
 
-.card {
-  background: linear-gradient(145deg, var(--secondhand-grey), var(--slate));
+/* For small screens or mobile devices */
+@media (max-width: 768px) {
+  .meters {
+    background-size: cover;  /* Adjusts for mobile view */
+    background-position: top; /* Adjust to focus on the top part of the image */
+  }
+}
+
+/* For medium screen sizes (tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .meters {
+    background-size: contain;  /* Ensures the image is contained within the section */
+    background-position: center; /* Center the image on larger screens */
+  }
+}
+
+/* For large screens (desktops) */
+@media (min-width: 1025px) {
+  .meters {
+    background-size: cover;  /* Fills the container while maintaining the aspect ratio */
+    background-position: center; /* Centers the image */
+  }
+}
+
+
+.meter-card {
+  background: transparent;
   border: 1px solid var(--whitish);
   border-radius: 15px;
   margin: 20px;
   padding: 20px;
+  height: auto;
   width: calc(33% - 40px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.meter-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
 }
 
-.card-header {
+.meter-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,13 +75,13 @@
   margin-bottom: 15px;
 }
 
-.card-header-box {
+.meter-card-header-box {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.card-header-box-name {
+.meter-card-header-box-name {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--whitish); /* Whitish for header */
@@ -53,31 +89,33 @@
   letter-spacing: 1px;
 }
 
-.card-header-box-value {
+.meter-card-header-box-value {
   font-size: 1.2rem;
   color: var(--light-grey); /* Light grey for value */
 }
 
-.button-container {
+.meter-button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-button {
-  background-color: var(--whitish); /* Whitish for button */
-  border: none;
+button.meter-card-button {
+  background-color: transparent; /* Transparent background */
+  border: 2px solid var(--red);  /* Red border */
   border-radius: 5px;
-  color: var(--slate); /* Slate text color */
+  color: var(--light-grey);             /* Red text color */
   cursor: pointer;
   padding: 10px 20px;
   font-size: 1rem;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover {
-  background-color: #e64a19; /* Or adjust as needed */
+button.meter-card-button:hover {
+  background-color: var(--red);  /* Red background on hover */
+  color: var(--whitish);         /* White text on hover */
 }
+
 
 .input-container {
   display: flex;
@@ -92,7 +130,7 @@ input[type="number"] {
   padding: 10px;
   margin-right: 10px;
   width: 60%;
-  background-color: var(--slate); /* Slate background for input */
+  background-color: var(--dark-background); /* Dark background for input */
   color: var(--whitish); /* Whitish text for input */
   transition: border-color 0.3s;
 }
@@ -108,23 +146,23 @@ input[type="number"]::placeholder {
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .card {
+  .meter-card {
     width: calc(50% - 40px);
   }
 }
 
 @media (max-width: 768px) {
-  .card {
+  .meter-card {
     width: calc(100% - 40px);
     margin: 10px;
     padding: 15px;
   }
 
-  .card-header-box-name {
+  .meter-card-header-box-name {
     font-size: 1.2rem;
   }
 
-  .card-header-box-value {
+  .meter-card-header-box-value {
     font-size: 1rem;
   }
 
@@ -139,17 +177,17 @@ input[type="number"]::placeholder {
     margin-bottom: 10px;
   }
 
-  button {
+  button.meter-card-button {
     width: 100%;
   }
 }
 
 @media (max-width: 480px) {
-  .card-header-box-name {
+  .meter-card-header-box-name {
     font-size: 1rem;
   }
 
-  .card-header-box-value {
+  .meter-card-header-box-value {
     font-size: 0.9rem;
   }
 
@@ -161,13 +199,13 @@ input[type="number"]::placeholder {
     padding: 8px;
   }
 
-  button {
+  button.meter-card-button {
     padding: 8px 10px;
     font-size: 0.9rem;
   }
 }
 
-.card-footer {
+.meter-card-footer {
   margin-top: 20px;
   text-align: center;
   color: var(--whitish); /* Whitish for footer text */
@@ -175,12 +213,12 @@ input[type="number"]::placeholder {
   opacity: 0.8;
 }
 
-.card-footer a {
+.meter-card-footer a {
   color: var(--whitish);
   text-decoration: none;
   transition: color 0.3s;
 }
 
-.card-footer a:hover {
-  color: #e64a19; /* Hover color can be adjusted */
+.meter-card-footer a:hover {
+  color: var(--red); /* Adjust hover color for links */
 }

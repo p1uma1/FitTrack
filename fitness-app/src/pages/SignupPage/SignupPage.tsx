@@ -5,11 +5,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-interface SignupPageProps {
-    setIsLoggedIn: (isLoggedIn: boolean) => void;
-}
-
-const SignupPage: React.FC<SignupPageProps> = ({ setIsLoggedIn }) => {
+const SignupPage: React.FC = ({ setIsLoggedIn }) => {
     const [imageUrl, setImageUrl] = useState<string>("");
     const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '' });
     const [emailError, setEmailError] = useState<string>('');
@@ -35,15 +31,6 @@ const SignupPage: React.FC<SignupPageProps> = ({ setIsLoggedIn }) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        
-        // Clear error messages on input change
-        if (name === 'email') {
-            setEmailError('');
-        } else if (name === 'password') {
-            setPasswordError('');
-        } else if (name === 'confirmPassword') {
-            setConfirmPasswordError('');
-        }
     };
 
     const handleSignup = async (e: React.FormEvent) => {
@@ -65,12 +52,12 @@ const SignupPage: React.FC<SignupPageProps> = ({ setIsLoggedIn }) => {
                 // Set specific error messages or general error
                 setEmailError(data.errors.email || '');
                 setPasswordError(data.errors.password || '');
-                setError(data.errors.general || 'An unknown error occurred during signup.');
+                setError(data.errors.general || 'An unknown error occurred during login.');
             } else {
                 const userId = data.user;
                 localStorage.setItem('userId', userId);
-                setIsLoggedIn(true);
-                navigate('/'); // Redirect after successful signup
+                setIsLoggedIn(true)   
+                navigate('/'); // Redirect after successful login
             }
         } catch (error) {
             console.error('Error signing up:', error);
@@ -78,20 +65,20 @@ const SignupPage: React.FC<SignupPageProps> = ({ setIsLoggedIn }) => {
                 const errors = error.response.data.errors;
                 setEmailError(errors.email || '');
                 setPasswordError(errors.password || '');
-                setError(errors.general || 'An unknown error occurred during signup.'); // General error
+                setError(errors.general || 'An unknown error occurred during signup.');
             } else {
                 setError('An error occurred while signing up. Please try again.'); // General error
             }
-        }
+        } 
     };
 
     return (
-        <div className="signup-container">
-            <div className="signup-logo">
+        <div className="login-container">
+            <div className="login-logo">
                 <img src={imageUrl} alt="Logo" />
             </div>
-            <div className="signup-form">
-                <h2 className='signup-header'>Signup</h2>
+            <div className="login-form">
+                <h2 className='login-header'>Signup</h2>
                 {error && <div className="general error">{error}</div>} {/* Display general error */}
                 <form onSubmit={handleSignup}>
                     <div className="input-group">
@@ -133,7 +120,7 @@ const SignupPage: React.FC<SignupPageProps> = ({ setIsLoggedIn }) => {
                     <button className='submit-button' type="submit">Signup</button>
                 </form>
                 <p>Already have an account?</p>
-                <button className='submit-button' onClick={() => navigate('/login')}>Login</button>
+            <button className='submit-button' onClick={() => navigate('/login')}>Login</button>
             </div>
         </div>
     );

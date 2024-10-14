@@ -1,127 +1,99 @@
-/* Global styles */
-* {
-  margin: 0;
-  padding: 0;
-}
-
 :root {
-  --whitish: #ffffff;         /* White background */
-  --light-grey: #f5f5f5;     /* Light grey background */
-  --red: #dd3333;            /* Red color */
-  --black: #000000; 
-  --dark-background: #121212; /* Black color */
-  --text-light-grey: #d3d3d3;/* Light grey text */
-  --text-dark-grey: #666666;  /* Dark grey text */
+  --whitish: #ffffff;          /* White background */
+  --light-grey: #f5f5f5;       /* Light grey background */
+  --red: #dd3333;              /* Red color */
+  --black: #000000;            /* Black color */
+  --dark-background: #121212;  /* Dark background (very dark grey/black) */
+  --text-light-grey: #d3d3d3;  /* Light grey text */
+  --text-dark-grey: #666666;   /* Dark grey text */
 }
 
 body {
-  background-color: var(--light-grey); 
-  color: var(--text-dark-grey);      
+  background-color: var(--light-grey);
+  color: var(--text-dark-grey);
+  font-family: Arial, sans-serif;
 }
 
-body::-webkit-scrollbar {
-  display: none; /* Hides the scrollbar */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--black);
 }
 
-.head1 {
-  -webkit-text-stroke: 1px var(--black); /* Black color */
-  color: transparent;
-  font-size: 10rem;
-  font-weight: 900;
-  text-align: center;
-}
-
-/* Button Styles */
-button, .cta-button {
-  background-color: var(--red); /* Red for buttons */
-  color: var(--whitish); /* White text for contrast */
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  font-size: 1.5rem;
+a {
+  color: var(--red);
   text-decoration: none;
-  transition: background 0.3s ease;
 }
 
-button:hover, .cta-button:hover {
-  background-color: transparent; /* Darker red shade for hover effect */
+a:hover {
+  color: var(--black);
 }
 
-/* Section titles */
-h2 {
-  color: var(--black); /* Black color for section titles */
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+button {
+  background-color: var(--red);
+  color: var(--whitish);
+  border: var(--red);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-/* Paragraphs */
-p {
-  font-size: 1.5rem;
-  line-height: 1.6;
-  color: var(--text-dark-grey); /* Dark grey for paragraphs */
+button:hover {
+  background-color: var(--black);
 }
 
-/* Footer */
+input, textarea {
+  background-color: var(--light-grey);
+  border: 1px solid var(--text-dark-grey);
+  color: var(--black);
+  padding: 8px;
+  border-radius: 4px;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--red);
+  outline: none;
+}
+
+.card {
+  background-color: var(--whitish);
+  border: 1px solid var(--text-light-grey);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.card-header {
+  background-color: var(--dark-background);
+  color: var(--whitish);
+  padding: 15px;
+  border-bottom: 1px solid var(--text-light-grey);
+}
+
+.card-body {
+  background-color: var(--whitish);
+  color: var(--text-dark-grey);
+  padding: 15px;
+}
+
+.placeholder-glow {
+  background-color: var(--light-grey);
+  border-radius: 4px;
+}
+
+.placeholder {
+  background-color: var(--text-light-grey);
+}
+
 footer {
-  background-color: var(--black); /* Black for footer background */
-  color: var(--whitish); /* White for footer text */
-  padding: 2rem;
+  background-color: var(--dark-background);
+  color: var(--text-light-grey);
+  padding: 20px;
   text-align: center;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-  .head1 {
-    font-size: 8rem; /* Reduce font size for large tablets */
-  }
-  
-  h2 {
-    font-size: 2rem; /* Adjust section title size */
-  }
-
-  p {
-    font-size: 1.25rem; /* Reduce paragraph font size */
-  }
-
-  button, .cta-button {
-    font-size: 1.25rem; /* Smaller button text */
-    padding: 0.75rem 1.5rem; /* Reduce button padding */
-  }
+footer a {
+  color: var(--whitish);
 }
 
-@media (max-width: 768px) {
-  .head1 {
-    font-size: 6rem; /* Further reduce font size for tablets */
-  }
-
-  h2 {
-    font-size: 1.75rem; /* Further adjust section title size */
-  }
-
-  p {
-    font-size: 1rem; /* Further reduce paragraph font size */
-  }
-
-  button, .cta-button {
-    font-size: 1rem; /* Button text size for mobile */
-    padding: 0.5rem 1rem; /* Further reduce button padding */
-  }
-}
-
-@media (max-width: 480px) {
-  .head1 {
-    font-size: 4rem; /* Small font size for mobile devices */
-  }
-
-  h2 {
-    font-size: 1.5rem; /* Section title size for mobile */
-  }
-
-  p {
-    font-size: 0.875rem; /* Smaller paragraph font size */
-  }
-
-  button, .cta-button {
-    font-size: 0.875rem; /* Small button text */
-    padding: 0.5rem; /* Smaller button padding */
-  }
+footer a:hover {
+  color: var(--red);
 }

@@ -77,7 +77,7 @@ const HomeBanner3 = () => {
 
   return (
     <div>
-      <h1 className='head1'>Workout Plans</h1>
+      <h1 className='head1-workouts'>Workout Plans</h1>
 
       <Swiper
         slidesPerView={1}
@@ -110,7 +110,7 @@ const HomeBanner3 = () => {
           <div
             className='swiper-slide'
             style={{
-              backgroundImage: `url(https://www.elitelifestylecoach.com/cdn/shop/products/4_514c157d-a575-4020-9677-ededaba31911.png?v=1645132427)`,
+              backgroundImage: `url(https://www.shutterstock.com/image-vector/customisation-icon-vector-illustration-600nw-1123362929.jpg)`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               height: '300px', // Set a height for the slide

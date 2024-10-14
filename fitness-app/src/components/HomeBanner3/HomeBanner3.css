@@ -1,139 +1,171 @@
-/* HomeBanner2.css */
-.head1 {
-    -webkit-text-stroke: 1px #ff5733;
-    color: transparent;
-    font-size: 4rem;
-    font-weight: 900;
-    text-align: center;
-    margin: 20px 0;
-    transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
+/* HomeBanner3.css */
+.head1-workouts {
+  color: var(--black);
+  font-size: 4rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 40px 0;
+  transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--black);
+  font-weight: bold; /* Make title bold */
+}
+
+.head1-workouts:hover {
+  color: transparent; /* Change text color on hover */
+  -webkit-text-stroke: 2px black;
+}
+
+.mySwiper {
+  width: 100%;
+  height: 300px; /* Adjust height as needed */
+}
+
+.swiper-slide {
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, outline 0.3s ease, filter 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  outline: 3px solid transparent; /* Initial outline */
+}
+
+.swiper-slide:hover {
+  transform: scale(1.1); /* Scale up the slide */
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
+  outline: 3px solid #ff5733; /* Outline color on hover */
+  filter: brightness(1.2); /* Brighten image on hover */
+}
+
+.swiper-slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute; /* Absolute positioning for the content */
+  top: 0;
+  left: 0;
+}
+
+.swiper-slide-content h2 {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for better readability */
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.swiper-slide:hover .swiper-slide-content h2 {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+  transform: translateY(-10px); /* Move text up slightly on hover */
+}
+
+.edit-btn, .delete-btn {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+  background-color: rgba(255, 87, 51, 0.7); /* Change button color on hover */
+}
+
+/* Position buttons properly in slides */
+.edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Card header at the top of the slide */
+.card-header {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* Ensure header stays on top */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .head1-workouts {
+    font-size: 3rem;
   }
-  
-  .head1:hover {
-    color: #ff5733;
-    -webkit-text-stroke: 1px transparent;
-  }
-  
-  .mySwiper {
-    width: 100%;
-    height: 300px; /* Adjust height as needed */
-  }
-  
-  .swiper-slide {
-    border-radius: 15px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, outline 0.3s ease, filter 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    outline: 3px solid transparent; /* Initial outline */
-  }
-  
-  .swiper-slide:hover {
-    transform: scale(1.1);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7);
-    outline: 3px solid #ff5733; /* Outline color on hover */
-    filter: brightness(1.2);
-  }
-  
-  .swiper-slide-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.3s ease;
-  }
-  
-  .swiper-slide:hover .swiper-slide-content {
-    opacity: 1; /* Make content visible on hover */
-  }
-  
+
   .swiper-slide-content h2 {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.6);
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 1.5rem;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1.2rem;
   }
-  
-  .swiper-slide:hover .swiper-slide-content h2 {
-    background-color: rgba(0, 0, 0, 0.8);
-    transform: translateY(-10px);
+
+  .card-header {
+    font-size: 1rem;
   }
-  
-  /* Button styling */
+
   .edit-btn, .delete-btn {
-    position: absolute;
-    top: 10px;
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 0.8rem;
   }
-  
-  .edit-btn {
-    right: 60px;
+}
+
+@media (max-width: 768px) {
+  .head1-workouts {
+    font-size: 2.5rem;
   }
-  
-  .delete-btn {
-    right: 10px;
+
+  .swiper-slide-content h2 {
+    font-size: 1rem;
   }
-  
-  .edit-btn:hover, .delete-btn:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    transform: scale(1.05);
+
+  .card-header {
+    font-size: 0.9rem;
   }
-  
-  .edit-btn:active, .delete-btn:active {
-    background-color: rgba(255, 255, 255, 0.8);
-    transform: scale(1);
+
+  .edit-btn, .delete-btn {
+    font-size: 0.7rem;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 1200px) {
-    .head1 {
-      font-size: 3rem;
-    }
-  
-    .swiper-slide-content h2 {
-      font-size: 1.2rem;
-    }
+
+  .mySwiper {
+    height: 250px; /* Adjust height as needed */
   }
-  
-  @media (max-width: 768px) {
-    .head1 {
-      font-size: 2.5rem;
-    }
-  
-    .swiper-slide-content h2 {
-      font-size: 1rem;
-    }
-  
-    .mySwiper {
-      height: 250px; /* Adjust height as needed */
-    }
+}
+
+@media (max-width: 480px) {
+  .head1-workouts {
+    font-size: 2rem;
   }
-  
-  @media (max-width: 480px) {
-    .head1 {
-      font-size: 2rem;
-    }
-  
-    .swiper-slide-content h2 {
-      font-size: 0.9rem;
-    }
-  
-    .mySwiper {
-      height: 200px; /* Adjust height as needed */
-    }
+
+  .swiper-slide-content h2 {
+    font-size: 0.9rem;
   }
-  
+
+  .card-header {
+    font-size: 0.8rem;
+  }
+
+  .edit-btn, .delete-btn {
+    font-size: 0.6rem;
+  }
+
+  .mySwiper {
+    height: 200px; /* Adjust height as needed */
+  }
+}
