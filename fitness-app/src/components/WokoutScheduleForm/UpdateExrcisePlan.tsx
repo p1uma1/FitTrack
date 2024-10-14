@@ -98,9 +98,7 @@ const UpdateExercisePlan: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const userId = localStorage.getItem('userId');
     const exercisePlan = {
-      userId,
       name: exercisePlanName,
       workouts: selectedWorkouts.map(workout => ({
         workout: workout._id,

@@ -12,12 +12,7 @@ const HomeBanner3 = () => {
 
   const getExercisePlans = async () => {
     try {
-      const userId = localStorage.getItem('userId');
-      if (!userId) {
-        throw new Error('No userId found in localStorage');
-      }
-
-      const response = await fetch(`http://localhost:3000/api/exercise-plans/${userId}`, {
+      const response = await fetch(`http://localhost:3000/api/exercise-plans/`, {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -129,26 +124,6 @@ const HomeBanner3 = () => {
               <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
                 Custom Workout Plan
               </h2>
-              <button 
-                className='edit-btn' 
-                onClick={(e) => { 
-                  e.stopPropagation(); 
-                  handleEdit('customWorkout'); 
-                }}
-                style={{ position: 'absolute', top: '10px', right: '60px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
-              >
-                Edit
-              </button>
-              <button 
-                className='delete-btn' 
-                onClick={(e) => { 
-                  e.stopPropagation(); 
-                  handleDelete('customWorkout'); 
-                }}
-                style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
-              >
-                Delete
-              </button>
             </div>
           </div>
         </SwiperSlide>
@@ -157,7 +132,7 @@ const HomeBanner3 = () => {
             <div
               className='swiper-slide'
               style={{
-                backgroundImage: `url(https://www.elitelifestylecoach.com/cdn/shop/products/4_514c157d-a575-4020-9677-ededaba31911.png?v=1645132427)`,
+                backgroundImage: `url(https://www.shutterstock.com/image-vector/customisation-icon-vector-illustration-600nw-1123362929.jpg)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 height: '300px', // Set a height for the slide
@@ -186,7 +161,6 @@ const HomeBanner3 = () => {
                     e.stopPropagation(); 
                     window.location.href = `/workouts/customWorkout/${plan._id}`;
                   }}
-                  style={{ position: 'absolute', top: '10px', right: '60px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
                 >
                   Edit
                 </button>
@@ -196,7 +170,7 @@ const HomeBanner3 = () => {
                     e.stopPropagation(); 
                     handleDelete(plan._id); 
                   }}
-                  style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(255, 255, 255, 0.7)', border: 'none', borderRadius: '5px', padding: '5px 10px', cursor: 'pointer' }}
+                  
                 >
                   Delete
                 </button>

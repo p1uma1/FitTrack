@@ -33,11 +33,13 @@ const getExercisePlanbyId = async (req, res) => {
 const createExercisePlan = async (req, res) => {
 
   try {
-    const { userId, name, workouts } = req.body;
+    const userId = req.user._id;
+    const {  name, workouts } = req.body;
     const newPlan = new ExercisePlan({ userId, name, workouts });
     await newPlan.save();
     res.status(201).json(newPlan);
   } catch (error) {
+    console.log(error)
     res.status(500).json({ message: 'Something went wrong', error });
   }
 };
@@ -73,7 +75,8 @@ const getWorkouts = async (req, res) => {
 
 const updateExercisePlan = async (req, res) => {
   try {
-    const { userId, name, workouts } = req.body;
+    const userId = req.user._id;
+    const {  name, workouts } = req.body;
     const { exercisePlanId } = req.params;
     const existingPlan =await ExercisePlan.findByIdAndUpdate(exercisePlanId,{ userId, name, workouts })
     await existingPlan.save();

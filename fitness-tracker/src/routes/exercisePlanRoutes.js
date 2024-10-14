@@ -3,7 +3,7 @@ const { getExercisePlans, createExercisePlan, getWorkouts, deleteExercisePlan, u
 const requireAuth = require('../Middleware/auth');
 const router = express.Router();
 
-router.get('/:userId',requireAuth, getExercisePlans);
+router.get('/',requireAuth, getExercisePlans);
 router.post('/',requireAuth, createExercisePlan);
 router.get('/workouts/:exercisePlanId', requireAuth, getWorkouts);
 router.delete('/:exercisePlanId',requireAuth, deleteExercisePlan);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './CreateExercisePlan.css';
+import { useNavigate } from 'react-router-dom';
 
 interface Workout {
   _id: string;
@@ -14,7 +15,7 @@ const CreateExercisePlan: React.FC = () => {
   const [selectedWorkouts, setSelectedWorkouts] = useState<any[]>([]);
   const [exercisePlanName, setExercisePlanName] = useState<string>('');
   const [filter, setFilter] = useState<string>('');
-
+  const navigate = useNavigate(); // Initialize navigate
 
   useEffect(() => {
     // Fetch workouts from the server
@@ -49,38 +50,32 @@ const CreateExercisePlan: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const userId = localStorage.getItem('userId');
+    
     const exercisePlan = {
-        userId, // Include the userId in the exercise plan
-        name: exercisePlanName,
-        workouts: selectedWorkouts.map(workout => ({
-          workout: workout._id,
-          sets: workout.sets,
-          reps: workout.reps
-        }))
-      };
+      name: exercisePlanName,
+      workouts: selectedWorkouts.map(workout => ({
+        workout: workout._id,
+        sets: workout.sets,
+        reps: workout.reps
+      }))
+    };
 
     try {
-        
-        const response = await fetch(`http://localhost:3000/api/exercise-plans`, {
+      const response = await fetch(`http://localhost:3000/api/exercise-plans`, {
         method: 'POST',
         credentials: "include",
         headers: {
           'Content-Type': 'application/json',
-       
-          
         },
         body: JSON.stringify(exercisePlan)
       });
 
       if (!response.ok) {
         throw new Error('Failed to create exercise plan');
+      } else {
+        console.log('Successfully added');
+        navigate('/'); // Navigate to the desired route
       }
-      else{
-        console.log('succesfully added');
-      }
-
-      // Handle success (e.g., redirect or display success message)
     } catch (error) {
       console.error('Error creating exercise plan:', error);
     }

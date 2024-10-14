@@ -83,14 +83,17 @@ const HomeBanner2 = () => {
               className='swiper-slide'
               style={{
                 backgroundImage: `url(${item.imageUrl})`,
-                backgroundSize: 'cover',
+                backgroundSize: '75%', // Set the size to 75% of the container
                 backgroundPosition: 'center',
-                height: '300px',
+                backgroundRepeat: 'no-repeat',
+                height: '300px', // Keep this height or adjust as needed
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between', // To space the header and content
+                justifyContent: 'space-between',
                 alignItems: 'center',
               }}
+              
+              
               onClick={() => {
                 window.location.href = `/workouts/${item.type}`;
               }}

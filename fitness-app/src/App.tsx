@@ -13,17 +13,11 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(!!localStorage.getItem('authToken'));
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const checkAuthStatus = async () => {
-      console.log('check auth called');
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        setIsLoggedIn(false);
-        return;
-      }
 
       try {
         const response = await fetch('http://localhost:3000/api/check-auth', {
@@ -31,7 +25,7 @@ function App() {
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`, // Use token in headers
+            'Credentials': 'include',
           },
         });
 
