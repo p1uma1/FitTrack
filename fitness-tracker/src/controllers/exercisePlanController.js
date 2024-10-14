@@ -6,6 +6,7 @@ const getExercisePlans = async (req, res) => {
   const userId = req.user._id;
   try {
     const plans = await ExercisePlan.find({ userId }).populate('workouts');
+    console.log(plans)
     res.status(200).json(plans);
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong', error });

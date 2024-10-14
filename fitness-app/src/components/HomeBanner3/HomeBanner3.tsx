@@ -27,12 +27,14 @@ const HomeBanner3 = () => {
 
       if (!response.ok) {
         throw new Error('Failed to fetch exercise plans');
+        
       }
-
+      
       const result = await response.json();
-      console.log(result);
+      console.log(response);
       setExercisePlans(result);
       setLoading(false);
+    
     } catch (error) {
       console.error('Error fetching exercise plans:', error);
       setError('Failed to fetch exercise plans');
@@ -169,7 +171,13 @@ const HomeBanner3 = () => {
               }}
             >
               <div className='swiper-slide-content'>
-                <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
+                <h2 style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                color: 'white',
+                width: '100%',
+                textAlign: 'center',
+                padding: '10px 0',
+                fontSize: '1.25rem',
+                fontWeight: 'bold' }}>
                   {plan.name}
                 </h2>
                 <button 
@@ -194,6 +202,7 @@ const HomeBanner3 = () => {
                 </button>
               </div>
             </div>
+            
           </SwiperSlide>
         ))}
       </Swiper>

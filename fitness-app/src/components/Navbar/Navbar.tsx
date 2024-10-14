@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { storage } from "../../assets/firebaseConfig"; // Import your storage here
 import { ref, getDownloadURL } from 'firebase/storage';
 import "./Navbar.css";
-import AuthPopup from "../AuthPopup/AuthPopup";
+
 
 interface NavbarProps {
   isLoggedIn: boolean;
@@ -13,7 +13,6 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick }) => {
   const navigate = useNavigate();
-  const [showPopup, setShowPopup] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
@@ -41,7 +40,6 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
       });
       if(response.ok){
       setIsLoggedIn(false);
-      localStorage.setItem('isLoggedIn', 'false');
       navigate('/preview');}
     } catch (error) {
       console.error('Error status:', error);
@@ -71,10 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
           LogOut
         </button>
       ) : (
-        <button onClick={() => setShowPopup(true)}>LogIn</button>
-      )}
-      {showPopup && (
-        <AuthPopup setShowpopup={setShowPopup} setIsLoggedIn={setIsLoggedIn} />
+        <button onClick={() => navigate('/login')}>LogIn</button>
       )}
     </nav>
   );
