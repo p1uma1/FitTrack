@@ -12,7 +12,7 @@ Backend: Node.js, Express.js
 Database: MongoDB
 Other Tools: Mongoose, Axios, JWT (for authentication)
 
-Getting Started
+Getting Started:
 
 Prerequisites
 Make sure you have the following installed:
