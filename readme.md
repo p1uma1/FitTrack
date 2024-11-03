@@ -2,6 +2,7 @@ Fitness Tracker
 A fitness tracking application that allows users to create custom workout plans and monitor their progress over time.
 
 Features
+
 Custom Workout Plans: Create and personalize your own workout routines.
 Progress Tracking: View progress charts and statistics.
 User Authentication: Sign up, log in, and securely manage your profile.
@@ -10,7 +11,9 @@ Frontend: React (with TypeScript)
 Backend: Node.js, Express.js
 Database: MongoDB
 Other Tools: Mongoose, Axios, JWT (for authentication)
+
 Getting Started
+
 Prerequisites
 Make sure you have the following installed:
 
