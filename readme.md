@@ -70,4 +70,8 @@ bash
 Copy code
 cd fitness-app
 npm run dev
+<<<<<<< HEAD
 This will launch the frontend on the default Vite server (usually http://localhost:5173) and the backend on http://localhost:3000 (or the port specified in the .env file).
+=======
+This will launch the frontend on the default Vite server (usually http://localhost:5173) and the backend on http://localhost:3000 (or the port specified in the .env file).
+>>>>>>> e0bba3e123c36d1759606e7b37822fe3df471aaa
