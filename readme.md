@@ -1,35 +1,44 @@
-Fitness Tracker
+# Fitness Tracker
+
 A fitness tracking application that allows users to create custom workout plans and monitor their progress over time.
 
-Features
-Custom Workout Plans: Create and personalize your own workout routines.
-Progress Tracking: View progress charts and statistics.
-User Authentication: Sign up, log in, and securely manage your profile.
-Technology Stack
-Frontend: React (with TypeScript)
-Backend: Node.js, Express.js
-Database: MongoDB
-Other Tools: Mongoose, Axios, JWT (for authentication)
-Getting Started
-Prerequisites
+## Features
+
+- **Custom Workout Plans**: Create and personalize your own workout routines.
+- **Progress Tracking**: View progress charts and statistics.
+- **User Authentication**: Sign up, log in, and securely manage your profile.
+
+## Technology Stack
+
+- **Frontend**: React (with TypeScript)
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB
+- **Other Tools**: Mongoose, Axios, JWT (for authentication)
+
+## Getting Started
+
+### Prerequisites
+
 Make sure you have the following installed:
 
-Node.js
-MongoDB
-Installation
-Clone the repository:
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://www.mongodb.com/)
 
-bash
-Copy code
-git clone https://github.com/yourusername/fitness-tracker.git
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/fitness-tracker.git
 Navigate to the project directory:
 
-bash
-Copy code
-cd fitness-tracker
+```bash
+    cd fitness-tracker
+
+
 Install dependencies for both the frontend and backend:
 
-bash
+```bash
 Copy code
 # Navigate to the frontend directory
 cd fitness-app
@@ -62,5 +71,3 @@ Copy code
 cd fitness-app
 npm run dev
 This will launch the frontend on the default Vite server (usually http://localhost:5173) and the backend on http://localhost:3000 (or the port specified in the .env file).
-
-Happy tracking!
