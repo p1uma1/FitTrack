@@ -8,6 +8,10 @@
   --text-dark-grey: #666666;
 }
 
+.homebanner3-container {
+  margin-bottom: 40px; /* Adjust the value to add more or less space */
+}
+
 .head1-workouts {
   color: transparent; /* Initially transparent to create a stroke effect */
   font-size: 4rem; /* Main heading size */

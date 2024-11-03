@@ -16,7 +16,7 @@ interface ReportPopupProps {
 }
 
 const ReportPopup: React.FC<ReportPopupProps> = ({ report, onClose }) => {
-  const color = '#ffc20e';
+  const color = 'var(--red)'; // Changed from yellow to red
   const chartsParams = {
     height: 300,
   };
@@ -58,9 +58,13 @@ const ReportPopup: React.FC<ReportPopupProps> = ({ report, onClose }) => {
   return (
     <div className='report-popup'>
       <div className='popup-content'>
-        <button className='close-button' onClick={onClose}>
-          <CloseIcon />
-        </button>
+      <button className="close-button" onClick={() => {
+  console.log('Close button clicked inside ReportPopup'); // This should print
+  onClose(); // Ensure this function is called after the log
+}}>
+  <CloseIcon />
+</button>
+
         <div className='s1'>
           {dataS1 && (
             <LineChart

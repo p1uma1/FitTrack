@@ -73,7 +73,7 @@ const HomeBanner3 = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
+    <div className='homebanner3-container'>
       <h1 className='head1-workouts'>Workout Plans</h1>
 
       <Swiper
@@ -130,7 +130,7 @@ const HomeBanner3 = () => {
         {exercisePlans.map((plan, index) => (
           <SwiperSlide key={index}>
             <div
-              className='swiper-slide'
+              className='swiper-slide-content'
               style={{
                 backgroundImage: `url(https://www.shutterstock.com/image-vector/customisation-icon-vector-illustration-600nw-1123362929.jpg)`,
                 backgroundSize: 'cover',
@@ -146,13 +146,7 @@ const HomeBanner3 = () => {
               }}
             >
               <div className='swiper-slide-content'>
-                <h2 style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                color: 'white',
-                width: '100%',
-                textAlign: 'center',
-                padding: '10px 0',
-                fontSize: '1.25rem',
-                fontWeight: 'bold' }}>
+                <h2 style={{ color: '#fff', backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: '10px', borderRadius: '5px' }}>
                   {plan.name}
                 </h2>
                 <button 

@@ -56,7 +56,7 @@ const HomeBanner1: React.FC = () => {
     }
 
     const updatedItem = {
-      type: reportType,
+      type: reportType, 
       date: new Date().toISOString(),
       value: parseFloat(inputValue),
     };
@@ -121,7 +121,18 @@ const HomeBanner1: React.FC = () => {
   }
 
   return (
+    
     <div className="meters">
+      {selectedReport && (
+  <ReportPopup
+    report={selectedReport}
+    onClose={() => {
+      setSelectedReport(null);
+      console.log('Close button triggered');
+    }}
+  />
+)}
+
       {data?.length > 0 &&
         data.map((item: Report, index: number) => (
           <div className="meter-card" key={index}>
@@ -148,12 +159,7 @@ const HomeBanner1: React.FC = () => {
             </div>
           </div>
         ))}
-      {selectedReport && (
-        <ReportPopup
-          report={selectedReport}
-          onClose={() => setSelectedReport(null)}
-        />
-      )}
+      
     </div>
   );
 };

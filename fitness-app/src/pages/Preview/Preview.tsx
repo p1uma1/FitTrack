@@ -1,17 +1,18 @@
 import { useState } from "react";
 import AuthPopup from "../../components/AuthPopup/AuthPopup";
 import './Preview.css'; // Import the CSS file
+import { useNavigate } from "react-router-dom";
 
 const Preview = () => {
   const [showPopup, setShowPopup] = useState(false);
-
+  const navigate = useNavigate();
   return (
     <div>
       <section className="hero-section">
         <h1 className="headline">Transform Your Fitness Journey!</h1>
         <h2 className="subheadline">Create custom workouts and track your progress effectively.</h2>
         {/* Change from anchor tag to button and add onClick handler */}
-        <button className="cta-button" onClick={() => setShowPopup(true)}>Get Started</button>
+        <button className="cta-button" onClick={() => navigate('/login')}>Get Started</button>
       </section>
       <main className="main">
         <section id="program-overview" className="section">
