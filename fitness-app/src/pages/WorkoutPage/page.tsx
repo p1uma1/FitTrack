@@ -1,11 +1,20 @@
 import React from 'react';
 import './workoutPage.css';
 import Axios from 'axios';
-import { useParams } from 'react-router-dom'; // Import useParams to get the route parameters
+import { useParams } from 'react-router-dom';
 
-const Page = () => {
-  const [workouts, setWorkouts] = React.useState([]);
-  const { Type } = useParams(); // Extract type from route parameters
+interface Workout {
+  workoutType: String;
+  
+  name: string;
+  description: string;
+  imageURL: string;
+  // Add other fields if they exist in your API response
+}
+
+const Page: React.FC = () => {
+  const [workouts, setWorkouts] = React.useState<Workout[]>([]); // Use the Workout type
+  const { Type } = useParams<{ Type: string }>(); // Extract type from route parameters with correct typing
 
   React.useEffect(() => {
     console.log(Type);
@@ -14,8 +23,8 @@ const Page = () => {
         console.log(Type);
         const type = Type?.toLowerCase(); // Convert type to lowercase
         if (type) { // Ensure type is defined before making the request
-          const response = await Axios.get(`http://localhost:3000/api/workouts/${type}`, {
-            withCredentials: true, // Correct key for credentials
+          const response = await Axios.get<Workout[]>(`http://localhost:3000/api/workouts/${type}`, {
+            withCredentials: true,
           });
           setWorkouts(response.data);
         }
@@ -25,11 +34,11 @@ const Page = () => {
     };
 
     fetchWorkouts();
-  }, [Type]); // Dependency array to refetch if type changes
+  }, [Type]);
 
   return (
     <div className='workout'>
-      <h1 className='head1'>Workouts for {Type}</h1> {/* Use Type here */}
+      <h1 className='head1'>Workouts for {Type}</h1>
       <div className='workout_exercises'>
         {workouts.length > 0 ? (
           workouts.map((item, index) => (
@@ -41,7 +50,7 @@ const Page = () => {
               <div className='workout_exercise_content'>
                 <h2>{item.name}</h2>
                 <p>{item.description}</p>
-                {/* Add additional fields as required, e.g., reps and sets if they exist */}
+                {/* Add additional fields as required */}
               </div>
             </div>
           ))

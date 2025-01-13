@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import './AuthPopup.css';
-import Logo from '../../assets/logo.png';
 import Input from '@mui/joy/Input';
-import Select from '@mui/joy/Select';
-import Option from '@mui/joy/Option';
 import { AiOutlineClose } from 'react-icons/ai';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -97,7 +94,7 @@ const AuthPopup: React.FC<AuthPopupProps> = ({ setShowpopup, setIsLoggedIn }) =>
       console.log(response.data);
       alert('Successfully signed up');
       setShowSignup(false);
-    } catch (error) {
+    } catch (error:any) {
       console.error('Error signing up:', error);
       if (error.response && error.response.data.errors) {
         const errors = error.response.data.errors;

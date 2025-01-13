@@ -49,7 +49,6 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn, onAboutClick
   const handleProfileClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (!isLoggedIn) {
       e.preventDefault();
-      setShowPopup(true);
     } else {
       navigate("/profile");
     }

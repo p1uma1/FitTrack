@@ -9,7 +9,7 @@ const createInitialReports = async (userId) => {
   const reportTypes = [
     { type: 'calories burned', unit: 'kcal' },
     { type: 'sleep', unit: 'hours' },
-    { type: 'BMI', unit: '' },
+    { type: 'BMI', unit: "N/A" },  // No unit for BMI
     { type: 'body fat rate', unit: '%' },
     { type: 'weight', unit: 'kg' }
   ];
@@ -20,11 +20,11 @@ const createInitialReports = async (userId) => {
         const newReport = new Report({
           userId,
           type,
-          unit,
+          unit: unit || "",  // Only assign unit if it has a value
           data: []
         });
         await newReport.save();
-        console.log(`Created initial report for type '${type}' ${unit}`);
+        console.log(`Created initial report for type '${type}' ${unit || ''}`);
       } catch (error) {
         console.error(`Error creating report for type '${type}':`, error);
         throw error;  // Propagate the error to the main try-catch block
@@ -38,6 +38,7 @@ const createInitialReports = async (userId) => {
     throw new Error('Failed to create initial reports');
   }
 };
+
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -76,38 +77,32 @@ const handleErrors = (err) => {
 
 const registerUser = async (req, res) => {
   try {
-    const { email, password, age, weight, gender, height } = req.body;
+    const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    const newUser = new User({
-      email,
-      password,
-    });
-
+    const newUser = new User({ email, password });
     const savedUser = await newUser.save();
     console.log('User registered successfully:', savedUser);
 
-    // Create initial reports for the new user
-    try{
+    try {
       await createInitialReports(savedUser._id);
-    } catch(err){
-      console.log('initializing reports failed');
+    } catch (err) {
+      console.log('Initializing reports failed:', err.message);
+      return res.status(500).json({ message: 'Failed to initialize reports.' });
     }
-    
-    console.log('user saved');
 
-    // Generate JWT
+    console.log('User and reports saved successfully');
+
     const token = createToken(savedUser._id);
-    console.log(token);
-    res.cookie('jwt', token, { 
-      httpOnly: true, 
+    res.cookie('jwt', token, {
+      httpOnly: true,
       maxAge: maxAge * 1000,
-      sameSite: 'Lax', // Helps with CSRF protection
-      secure: process.env.NODE_ENV === 'production' // Set secure flag in production
+      sameSite: 'Lax',
+      secure: process.env.NODE_ENV === 'production'
     });
 
     res.status(201).json({ user: savedUser._id });
@@ -117,11 +112,14 @@ const registerUser = async (req, res) => {
   }
 };
 
+
 const loginUser = async (req, res) => {
+  console.log("logging in");
   const { email, password } = req.body;
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+      console.log(existingUser);
       const auth = await bcrypt.compare(password, existingUser.password);
       if (auth) {
         // Generate JWT
@@ -135,6 +133,7 @@ const loginUser = async (req, res) => {
         console.log(token);
         return res.status(200).json({ user: existingUser._id });
       } else {
+        console.log("incorrect password");
         throw new Error('incorrect password');
       }
     } else {
@@ -142,6 +141,7 @@ const loginUser = async (req, res) => {
     }
   } catch (error) {
     const errors = handleErrors(error);
+    console.log("err msg: ",errors.password);
     return res.status(400).json({ errors });
   }
 };

@@ -42,7 +42,6 @@
 .swiper-slide:hover {
   transform: scale(1.05); /* Scale slightly on hover */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.7); /* Enhance shadow */
-  outline: 3px solid var(--red); /* Outline color on hover */
   filter: brightness(1.1); /* Slightly brighten image on hover */
 }
 

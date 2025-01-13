@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import '../WorkoutPage/workoutPage.css';
+import './ExercisePlanPage.css';
 
 const ExercisePlanPage = () => {
   const { planId } = useParams<{ planId: string }>();
@@ -45,11 +45,11 @@ const ExercisePlanPage = () => {
 
   return (
     <div className='workout'>
-      <h2>Workouts for Plan {planId}</h2>
+      <h2>Custom Workout Plan</h2>
       {workouts.length > 0 ? (
         workouts.map((item, index) => (
           <div key={index} className='workout_exercise'>
-            <h3>Exercise {index + 1}</h3>
+            <h3> {index + 1}</h3>
             <div className='workout_exercise_image'>
               <img src={item.workout.imageURL} alt={item.workout.name} />
             </div>

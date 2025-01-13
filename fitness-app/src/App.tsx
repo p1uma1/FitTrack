@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './components/About/About';
 import Navbar from './components/Navbar/Navbar';
@@ -52,11 +52,11 @@ function App() {
     <Router>
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} onAboutClick={handleAboutClick} />
       <Routes>
-        {!isLoggedIn && <Route path="/" element={<Preview />} />}
+        {!isLoggedIn && <Route path="/" element={<Preview setIsLoggedIn={setIsLoggedIn}/>} />}
         {isLoggedIn && <Route path="/" element={<Home />} />}
         <Route path='/login' element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
         <Route path='/signup' element={<SignupPage setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/preview" element={<Preview />} />
+        <Route path="/preview" element={<Preview setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/workouts/customWorkout" element={<CreateExercisePlan />} />
         <Route path="/workouts/:Type" element={<Page />} />
         <Route path="/exercise-plans/:planId" element={<ExercisePlanPage />} />

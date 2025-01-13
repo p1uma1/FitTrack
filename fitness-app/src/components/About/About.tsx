@@ -2,7 +2,7 @@ import React from 'react';
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram, FaLinkedin, FaGithub, FaGem, FaHome, FaEnvelope, FaPhone } from 'react-icons/fa';
 import './About.css'; // Import the CSS file
 
-const About = React.forwardRef<HTMLDivElement>((props, ref) => {
+const About = React.forwardRef<HTMLDivElement>((_props, ref) => {
   return (
     <footer ref={ref} className="about-footer" style={{padding:"20px 0 0 0"}}>
       {/* Section: Social media */}

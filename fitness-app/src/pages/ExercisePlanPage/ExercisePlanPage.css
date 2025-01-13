@@ -1,0 +1,105 @@
+/* Styles for ExercisePlanPage */
+
+/* General styles for the workout container */
+.workout {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+  }
+  
+  /* Heading styles */
+  .workout h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  /* Workout exercise container */
+  .workout_exercise {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  
+  /* Exercise number */
+  .workout_exercise h3 {
+    font-size: 1.5rem;
+    margin-right: 20px;
+    color: #333;
+  }
+  
+  /* Image container */
+  .workout_exercise_image img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  
+  /* Exercise content */
+  .workout_exercise_content {
+    margin-left: 20px;
+  }
+  
+  .workout_exercise_content h2 {
+    font-size: 1.8rem;
+    color: #ff5733;
+    margin-bottom: 10px;
+  }
+  
+  .workout_exercise_content p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .workout_exercise {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 15px;
+    }
+  
+    .workout_exercise_image img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  
+    .workout_exercise_content {
+      margin-left: 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .workout h2 {
+      font-size: 2rem;
+    }
+  
+    .workout_exercise h3 {
+      font-size: 1.2rem;
+    }
+  
+    .workout_exercise_content h2 {
+      font-size: 1.5rem;
+    }
+  
+    .workout_exercise_content p {
+      font-size: 0.9rem;
+    }
+  }
+  

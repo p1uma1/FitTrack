@@ -37,11 +37,6 @@ const HomeBanner3 = () => {
     }
   };
 
-  const handleEdit = async(planId: string) => {
-    console.log(`Editing plan ${planId}`);
-    // Add your edit logic here
-  };
-
   const handleDelete = async(planId: string) => {
     console.log(`Deleting plan ${planId}`);
     try {

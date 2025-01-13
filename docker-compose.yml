@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ./fitness-app
+      dockerfile: Dockerfile
+    container_name: react-ui
+    ports:
+      - "4173:4173"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    networks:
+      - mern-nework
+
+  backend:
+    build:
+      context: ./fitness-tracker
+      dockerfile: Dockerfile
+    container_name: react-ui
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb+srv://MrPickle:8482@cluster0.w5ua3th.mongodb.net/fitTrackUser?retryWrites=true&w=majority&appName=Cluster0mongodb://database:27017/mernstack
+      JWT_SECRET: mysecretkey
+    depends_on:
+      - database
+    networks:
+      - mern-nework
+
+  database:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mern-nework
+
+volumes:
+  mongo_data:
+
+networks:
+  mern-nework:
+    driver: bridge

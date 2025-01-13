@@ -5,7 +5,12 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const SignupPage: React.FC = ({ setIsLoggedIn }) => {
+interface SignupPageProps {
+    setIsLoggedIn: (value: boolean) => void;
+}
+
+const SignupPage: React.FC<SignupPageProps> = ({ setIsLoggedIn }) => {
+
     const [imageUrl, setImageUrl] = useState<string>("");
     const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '' });
     const [emailError, setEmailError] = useState<string>('');
@@ -46,7 +51,7 @@ const SignupPage: React.FC = ({ setIsLoggedIn }) => {
             const response = await axios.post('http://localhost:3000/api/users/register', {
                 email: formData.email,
                 password: formData.password,
-            }, { headers: { 'Content-Type': 'application/json' } });
+            }, { headers: { 'Content-Type': 'application/json' },withCredentials: true  });
             const data = response.data;
             if (data.errors) {
                 // Set specific error messages or general error
@@ -59,7 +64,7 @@ const SignupPage: React.FC = ({ setIsLoggedIn }) => {
                 setIsLoggedIn(true)   
                 navigate('/'); // Redirect after successful login
             }
-        } catch (error) {
+        } catch (error:any) {
             console.error('Error signing up:', error);
             if (error.response && error.response.data.errors) {
                 const errors = error.response.data.errors;

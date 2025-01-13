@@ -3,7 +3,11 @@ import AuthPopup from "../../components/AuthPopup/AuthPopup";
 import './Preview.css'; // Import the CSS file
 import { useNavigate } from "react-router-dom";
 
-const Preview = () => {
+interface PreviewProps {
+    setIsLoggedIn: (value: boolean) => void;
+}
+
+const Preview: React.FC<PreviewProps> = ({ setIsLoggedIn }) => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
   return (
@@ -38,7 +42,7 @@ const Preview = () => {
 
       {/* Render AuthPopup if showPopup is true */}
       {showPopup && (
-        <AuthPopup setShowpopup={setShowPopup} />
+        <AuthPopup setIsLoggedIn={setIsLoggedIn} setShowpopup={setShowPopup} />
       )}
     </div>
   );

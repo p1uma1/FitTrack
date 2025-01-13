@@ -67,7 +67,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ setIsLoggedIn }) => {
             setIsLoggedIn(true);
             navigate('/');
           }
-        } catch (error) {
+        } catch (error:any) {
+            setEmailError(error.email || '');
+            setPasswordError(error.password || '');
           console.error('Error logging in:', error);
           setError('An error occurred while logging in. Please try again.');
         }

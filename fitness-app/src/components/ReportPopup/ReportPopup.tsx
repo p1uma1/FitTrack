@@ -4,7 +4,6 @@ import './ReportPopup.css';
 import CloseIcon from '@mui/icons-material/Close';
 
 interface Report {
-  userId: string;
   type: string;
   unit: string;
   data: Array<{ date: string; value: number }>;
@@ -72,7 +71,7 @@ const ReportPopup: React.FC<ReportPopupProps> = ({ report, onClose }) => {
                 {
                   id: 'Day',
                   data: dataS1.xAxis.data,
-                  scaleType: dataS1.xAxis.scaleType,
+                   scaleType: dataS1.xAxis.scaleType as "time",
                   label: dataS1.xAxis.label,
                   valueFormatter: (date: Date) => date.getDate().toString(),
                 },
