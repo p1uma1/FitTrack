@@ -1,4 +1,4 @@
-version: '3.8'
+
 services:
   frontend:
     build:
@@ -18,7 +18,7 @@ services:
     build:
       context: ./fitness-tracker
       dockerfile: Dockerfile
-    container_name: react-ui
+    container_name: node-api
     ports:
       - "3000:3000"
     environment:

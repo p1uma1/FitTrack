@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 const corsOptions = {
-    origin: 'http://localhost:4174', // Replace with your frontend URL
+    origin: 'http://localhost:4173', // Replace with your frontend URL
     credentials: true, // Allow credentials (cookies) to be included
   };
   

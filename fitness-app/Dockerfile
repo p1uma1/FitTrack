@@ -5,7 +5,7 @@ FROM node:16
 WORKDIR /fitness-app
 
 # Copy package.json and package-lock.json (if available) for dependency installation
-COPY package*.json ./
+COPY package.json ./
 
 # Install dependencies with legacy peer deps
 RUN npm install --legacy-peer-deps
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port used by Vite preview
-EXPOSE 4174
+EXPOSE 4173
 
 # Preview the React app using Vite
 CMD ["npm", "run", "preview"]
